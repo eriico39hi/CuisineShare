@@ -53,6 +53,7 @@ function Login() {
       <Container>
         <Navbar.Brand className="fs-4 fw-bold" href="/Home">CuisineShare</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
       </Container>
     </Navbar>
     <Container className = "container d-flex justify-content-center align-items-center mt-5">

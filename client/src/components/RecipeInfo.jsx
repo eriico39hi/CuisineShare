@@ -25,10 +25,10 @@ function RecipeInfo() {
             </Navbar.Collapse>            
         </Container>
         </Navbar>
-        <Container>
+        <Container className = "mt-5">
             <Row>
                 <Col>
-                <Image src={myImage} roundedCircle fluid />
+                <Image src={myImage} fluid />
                 </Col>
                 <Col>
                 <Card className = "border border-dark">
@@ -66,10 +66,7 @@ function RecipeInfo() {
           </Row>
         <hr/> 
         </Container>
-     
-
-        
-    
+      
     </>);
 }
 
