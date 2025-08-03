@@ -13,44 +13,40 @@ function Register() {
   const [username,setUsername] = useState("")
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
-  const [major,favCuisine] = useState("")
-  const [bio,setBiography] = useState("")
-  
-
 
   const navigate = useNavigate()
-  // 
 
   //submit handler
   const onsubmit = async (event)=>{
       event.preventDefault();
 
       try{
-          let response = await fetch(URL,{
-              method:"POST",
-              headers:{
-                  "content-type":"application/json"
-              },
-              body:JSON.stringify({username, major, bio, email,password})
-          })
-            const data = await response.json()
-            const token = data.token
-            if(response.ok && token){
-              localStorage.setItem("token",token)
-              navigate("/profile")
-            }
-            else{
-              alert(data.msg || "Registration failed!")
-            }
+        let response = await fetch(URL,{
+            method:"POST",
+            headers:{
+                "content-type":"application/json"
+            },
+            body:JSON.stringify({username,email,password})
+        })
+          const data = await response.json()
+          const token = data.token
+          if(response.ok && token){
+            localStorage.setItem("token",token)
+            navigate("/profile")
+          }
+          else{
+            alert(data.msg || "Registration failed!")
+          }
       }
       catch(err)
       {
-          console.log(err)
+        console.log(err)
       }
-  }
-  const oncancel = async (event) => {
-        navigate("/Login")
-  }
+    }
+
+    const oncancel = async (event) => {
+          navigate("/Login")
+    }
 
   return (<>
 
@@ -90,24 +86,6 @@ function Register() {
                     value={password} 
                     onChange={(e)=>setPassword(e.target.value)}
                     placeholder="Minimum length of 6" />
-                </Form.Group>
-                <Form.Group as={Row} className="mb-3" controlId="formGrid<Major>">
-                  <Form.Label>Favorite Cuisine</Form.Label>
-                  <Form.Select 
-                    value={major} 
-                    onChange={(e)=>favCuisine(e.target.value)}>
-                    <option value=""></option>
-                    
-                  </Form.Select>
-                </Form.Group>
-                <Form.Group  as={Row} className="mb-3" controlId="formGridBiography">
-                  <Form.Label>Biography</Form.Label>
-                  <Form.Control 
-                    as="textarea" 
-                    rows={3}
-                    value={bio}  
-                    onChange={(e)=>setBiography(e.target.value)}
-                    placeholder="Tell us about yourself...." />
                 </Form.Group>
               </Col>
               <Button className="mt-3" variant="primary" type="button" onClick={onsubmit}>

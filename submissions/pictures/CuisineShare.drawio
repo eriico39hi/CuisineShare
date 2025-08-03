@@ -1,0 +1,440 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:141.0) Gecko/20100101 Firefox/141.0" version="28.0.7">
+  <diagram name="Page-1" id="kbSQqBPoXhfFCOsJXSJ8">
+    <mxGraphModel dx="4028" dy="2852" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="0ObeOle24kIf-P4PgMCv-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="260" width="380" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-2" value="View Recipes" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="410" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-3" value="Add Recipe" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="410" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-5" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="0ObeOle24kIf-P4PgMCv-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="610" as="sourcePoint" />
+            <mxPoint x="620" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-7" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-280" y="265" width="380" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-8" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="730" y="460" width="380" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-9" value="Logged in?" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="550" y="390" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-10" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="620" y="420" as="sourcePoint" />
+            <mxPoint x="730" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-11" value="Yes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="650" y="370" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-12" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="620" y="420" as="sourcePoint" />
+            <mxPoint x="730" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-13" value="No" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="640" y="460" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-14" value="Welcome Page" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="150" y="230" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-15" value="All Recipes Page" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-280" y="235" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-16" value="Login Page" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="730" y="428" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-17" value="Username" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="537.5" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-19" value="Password" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="567.5" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-20" value="Submit" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="875" y="597.5" width="90" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-21" value="No account?" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="830" y="622.5" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-22" value="Register" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="920" y="627.5" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-23" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="0ObeOle24kIf-P4PgMCv-20">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1190" y="607.5" as="sourcePoint" />
+            <mxPoint x="1300" y="608" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-24" value="&lt;div&gt;successful login&lt;/div&gt;&lt;div&gt;/api/auth/login&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="572.5" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-25" value="&lt;div&gt;on failure, issue msg and&amp;nbsp;&lt;/div&gt;&lt;div&gt;stay on this page&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1115" y="612.5" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-26" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="730" y="800" width="380" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-27" value="Username" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="870" y="872" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-28" value="Email" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="870" y="902" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-29" value="Cancel" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="870" y="982" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-33" value="Password" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="870" y="932" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-34" value="Submit" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="930" y="982" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-36" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.574;entryY=-0.004;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="0ObeOle24kIf-P4PgMCv-22" target="0ObeOle24kIf-P4PgMCv-26">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1110" y="750" as="sourcePoint" />
+            <mxPoint x="1160" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-37" value="Register Page" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="730" y="770" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-38" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="-225" y="345" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-39" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="-135" y="345" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-40" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="-45" y="345" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-41" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="-225" y="435" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-42" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="-135" y="435" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-43" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="-45" y="435" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-44" value="Recipes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-230" y="315" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-45" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="470" width="380" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-46" value="My Recipes Page" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1295" y="440" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-47" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="1355" y="540" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-48" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="1445" y="540" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-49" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="1535" y="540" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-50" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="1355" y="642" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-51" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="1445" y="642" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-52" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="1535" y="643" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-53" value="Favorites" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1357" y="514" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-54" value="User123" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="480" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-55" value="My Recipes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1355" y="616" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-56" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="0ObeOle24kIf-P4PgMCv-34">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1200" y="990" as="sourcePoint" />
+            <mxPoint x="1440" y="740" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1440" y="990" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-57" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="0ObeOle24kIf-P4PgMCv-29" target="0ObeOle24kIf-P4PgMCv-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="800" as="sourcePoint" />
+            <mxPoint x="1050" y="750" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="340" y="990" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-58" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="-120" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-59" value="Nav-Bar (not logged in)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="360" y="-150" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-60" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.heart" vertex="1" parent="1">
+          <mxGeometry x="-165" y="405" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-70" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.heart" vertex="1" parent="1">
+          <mxGeometry x="-75" y="405" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-71" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.heart" vertex="1" parent="1">
+          <mxGeometry x="15" y="405" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-72" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.heart" vertex="1" parent="1">
+          <mxGeometry x="-165" y="495" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-73" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.heart" vertex="1" parent="1">
+          <mxGeometry x="-75" y="495" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-74" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.heart" vertex="1" parent="1">
+          <mxGeometry x="15" y="495" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-75" value="Home&amp;nbsp; &amp;nbsp; &amp;nbsp;All Recipes&amp;nbsp; &amp;nbsp; &amp;nbsp;Login" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="395" y="-120" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-76" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.139;exitY=1.033;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.713;entryY=-0.011;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="0ObeOle24kIf-P4PgMCv-75" target="0ObeOle24kIf-P4PgMCv-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="410" as="sourcePoint" />
+            <mxPoint x="1050" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-78" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.856;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.008;entryY=0.544;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="0ObeOle24kIf-P4PgMCv-75" target="0ObeOle24kIf-P4PgMCv-8">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="600" y="70" as="sourcePoint" />
+            <mxPoint x="650" y="20" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="550" y="607" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-79" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="705" y="-120" width="330" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-80" value="Nav-Bar (logged in)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="765" y="-150" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-81" value="Home&amp;nbsp; &amp;nbsp; &amp;nbsp;All Recipes&amp;nbsp; &amp;nbsp; &amp;nbsp;Add Recipe&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;My Recipes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="745" y="-120" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-82" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="0ObeOle24kIf-P4PgMCv-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="580" y="360" as="sourcePoint" />
+            <mxPoint x="102" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-83" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="730" y="150" width="380" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-84" value="Name" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="950" y="180" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-85" value="Time" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="950" y="205" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-87" value="Desc" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="950" y="230" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-88" value="Submit" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="980" y="385" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-89" value="Add Recipe Page" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="720" y="120" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-91" value="Ingredient 1" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="810" y="272" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-92" value="Ingredient 1" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="810" y="292" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-93" value="Step 1" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="810" y="327" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-94" value="Step 2" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="810" y="347" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-96" value="Add Recipe" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="490" width="90" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-97" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="0ObeOle24kIf-P4PgMCv-96" target="0ObeOle24kIf-P4PgMCv-83">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1350" y="330" as="sourcePoint" />
+            <mxPoint x="850" y="590" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1605" y="285" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-98" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.08;exitY=1.067;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="0ObeOle24kIf-P4PgMCv-81">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="440" y="140" as="sourcePoint" />
+            <mxPoint x="420" y="20" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="769" y="20" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-102" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.522;exitY=1.133;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="0ObeOle24kIf-P4PgMCv-75" target="0ObeOle24kIf-P4PgMCv-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="440" y="140" as="sourcePoint" />
+            <mxPoint x="490" y="90" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="490" y="60" />
+              <mxPoint x="-90" y="60" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-103" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.327;exitY=1.033;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="0ObeOle24kIf-P4PgMCv-81">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="440" y="140" as="sourcePoint" />
+            <mxPoint x="490" y="60" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="843" y="60" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-104" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.563;exitY=0.933;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.484;entryY=-0.011;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="0ObeOle24kIf-P4PgMCv-81" target="0ObeOle24kIf-P4PgMCv-83">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="930" y="240" as="sourcePoint" />
+            <mxPoint x="980" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-105" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.847;exitY=1.067;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.008;entryY=0.226;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="0ObeOle24kIf-P4PgMCv-81" target="0ObeOle24kIf-P4PgMCv-45">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="930" y="240" as="sourcePoint" />
+            <mxPoint x="980" y="190" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="999" />
+              <mxPoint x="1240" />
+              <mxPoint x="1240" y="530" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-106" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-280" y="682" width="380" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-107" value="Name" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-60" y="712" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-108" value="Time" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-60" y="737" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-109" value="Desc" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-60" y="762" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-111" value="View Recipe Page" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-290" y="652" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-112" value="Ingredient 1" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-200" y="804" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-113" value="Ingredient 1" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-200" y="824" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-114" value="Step 1" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-200" y="859" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-115" value="Step 2" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-200" y="879" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-116" value="Picture" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-205" y="712" width="90" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-127" value="Picture" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="805" y="180" width="90" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-128" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="0ObeOle24kIf-P4PgMCv-52" target="0ObeOle24kIf-P4PgMCv-106">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="730" y="860" as="sourcePoint" />
+            <mxPoint x="1270" y="1230" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1580" y="1100" />
+              <mxPoint x="-90" y="1090" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-129" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.4;exitY=0.997;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="0ObeOle24kIf-P4PgMCv-42">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-135" y="642" as="sourcePoint" />
+            <mxPoint x="-103" y="680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-130" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.869;exitY=0.997;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="0ObeOle24kIf-P4PgMCv-43">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="60" y="637.5" as="sourcePoint" />
+            <mxPoint x="25" y="580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-131" value="/api/favrecipe" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-20" y="567.5" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-132" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.heart" vertex="1" parent="1">
+          <mxGeometry x="-250" y="717" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-133" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.07;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="0ObeOle24kIf-P4PgMCv-132">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-320" y="705" as="sourcePoint" />
+            <mxPoint x="-300" y="727" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-134" value="/api/favrecipe" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-380" y="712" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-135" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.401;entryY=0.015;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="0ObeOle24kIf-P4PgMCv-88" target="0ObeOle24kIf-P4PgMCv-136">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1130" y="450" as="sourcePoint" />
+            <mxPoint x="1150" y="410" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1154" y="395" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-136" value="/api/recipesubmit" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="420" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-138" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1153" y="440" as="sourcePoint" />
+            <mxPoint x="1240" y="530" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1153" y="530" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-139" value="/api/auth/register" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="967" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-140" value="/api/allrecipes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="150" y="395" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-141" value="/api/myrecipes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="-23" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-142" value="/api/myrecipes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1425" y="480" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-143" value="/api/allrecipes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-140" y="292" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0ObeOle24kIf-P4PgMCv-144" value="/api/viewrecipe" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-145" y="910" width="100" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

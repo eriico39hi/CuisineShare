@@ -6,20 +6,22 @@ const Users = require("./model/Users")
 const Recipes = require("./model/Recipes")
 const dotenv = require("dotenv")
 const jwt = require("jsonwebtoken")
+const cors = require("cors")
 
 dotenv.config()
 const app = express()
 app.use(express.json())
+app.use(cors())
 
 //Service post request to register new account
 app.post("/api/auth/register", async (req,res)=>{
     try{
-        const {username, password} = req.body
+        const {username, email, password} = req.body
         let user = await Users.findOne({username})
 
         if(user) return res.status(401).json({"msg":"A user already exists with that username"})
         const passwordHash = await bcrypt.hash(password, 10)
-        user = new Users({username,password:passwordHash})
+        user = new Users({username,email,password:passwordHash})
         user.save()
 
         const token = await jwt.sign({id:user._id},process.env.JWT_SECRET,{expiresIn:"1h"})
@@ -66,6 +68,12 @@ app.post("/api/recipesubmit", async (req,res)=>{
 
 //Service get request for my recipes
 app.get("/api/myrecipes", async (req,res)=>{
+
+
+})
+
+//Service get request for all recipes
+app.get("/api/allrecipes", async (req,res)=>{
 
 
 })
