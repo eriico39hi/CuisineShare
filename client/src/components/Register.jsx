@@ -13,7 +13,7 @@ function Register() {
   const [username,setUsername] = useState("")
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
-  const [major,setMajor] = useState("")
+  const [major,favCuisine] = useState("")
   const [bio,setBiography] = useState("")
   
 

@@ -57,6 +57,9 @@ app.post("/api/recipesubmit", async (req,res)=>{
         
         recipe = new Recipes({name, time, description, ingredients, instructions})
         recipe.save()
+
+        const token = await jwt.sign({id:recipe._id},process.env.JWT_SECRET,{expiresIn:"1h"})
+        res.status(200).json({id:recipe._id,token})
     }
     catch(err){console.log(err)}    
 })
