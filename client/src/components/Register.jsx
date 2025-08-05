@@ -45,7 +45,7 @@ function Register() {
     }
 
     const oncancel = async (event) => {
-          navigate("/Login")
+          navigate(-1)
     }
 
   return (<>

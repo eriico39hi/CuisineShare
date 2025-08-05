@@ -44,9 +44,6 @@ function Login() {
       }
   }
 
-  const onsignup = async (event) => {
-        navigate("/Register")
-  }
 
   return (<>
     <Navbar expand="lg" style={{ backgroundColor: '#74cbe0ff' }}>
@@ -83,7 +80,7 @@ function Login() {
               <Button className="mt-3" variant="primary" type="button" onClick={onsubmit}>
                 Login
               </Button>
-              <Nav.Link className="text-black" href="/Register">Not Signed up? Create Account</Nav.Link>
+              <Nav.Link className="text-black mt-3" href="/Register">Not Signed up? Create Account</Nav.Link>
             </Form>
           </Container>
         </Card.Body>

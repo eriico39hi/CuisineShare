@@ -14,6 +14,13 @@ import myImage from '../assets/image-not-found.jpg'
 
 
 function CreateRecipe() {
+
+  const navigate = useNavigate()
+  
+  const oncancel = async (event) => {
+        navigate(-1)
+  }
+   
    return (<>
         
 
@@ -27,16 +34,22 @@ function CreateRecipe() {
                 <Nav.Link className="text-black" href="/BrowseRecipes">All Recipes</Nav.Link>
                 <Nav.Link className="text-black" href="/CreateRecipe">Add Recipe</Nav.Link>
             </Nav>
-        </Navbar.Collapse>            
+        </Navbar.Collapse>        
       </Container>
     </Navbar>
-    <Container className = "mt-3">
+    <Container>
+      <div className="my-4 pb-2 border-bottom">
+        <h1> Create New Recipe</h1>
+      </div>
+    </Container>    
+    <Container className = "mt-3"> 
+      <Form onSubmit={onsubmit}>
       <Row>
         <Col>
         <Image src={myImage} fluid />
         </Col>
         <Col>
-          <Form >
+         
             <Form.Group className="mb-3" controlId="name">
               <Form.Label>Recipe Name</Form.Label>
               <Form.Control 
@@ -53,16 +66,15 @@ function CreateRecipe() {
                 as="textarea"
                 rows={4} />
             </Form.Group>
-          </Form>
           <Button className="mt-3" variant="primary" type="button">
               Upload Picture
           </Button>   
         </Col>
       </Row>
-      <hr/>
-      <Form >
+      <br/>
+      <Row>
         <Form.Group className="mb-3" controlId="formGridIngred1">
-          <Form.Label>Ingredients</Form.Label>
+          <Form.Label className="fs-2 fw-bold">Ingredients</Form.Label>
           <Form.Control 
             type="text" />
         </Form.Group>
@@ -71,7 +83,6 @@ function CreateRecipe() {
             type="text" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formGridIngred3">
-        
           <Form.Control 
             type="text" />
         </Form.Group>
@@ -79,10 +90,11 @@ function CreateRecipe() {
           <Form.Control 
             type="text" />
         </Form.Group>
-      </Form>   
-      <Form >
+      </Row>
+      <br/>
+       <Row>
             <Form.Group className="mb-3" controlId="formGridInst1">
-              <Form.Label>Ingredients</Form.Label>
+              <Form.Label className="fs-2 fw-bold">Instructions</Form.Label>
               <Form.Control 
                 type="text" />
             </Form.Group>
@@ -99,13 +111,14 @@ function CreateRecipe() {
               <Form.Control 
                 type="text" />
             </Form.Group>
-      </Form>
-      <Button className="mt-3 mx-4" variant="primary" type="button">
+      </Row>
+      <Button className="mt-3 mx-4" variant="primary" type="button" onClick={oncancel}>
         Cancel
       </Button>
-      <Button className="mt-3" variant="primary" type="button">
+      <Button className="mt-3" variant="primary" type="button" onClick={onsubmit}>
         Submit
-      </Button>   
+      </Button>
+        </Form>
     </Container> 
         <hr/> 
   
