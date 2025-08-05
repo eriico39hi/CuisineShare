@@ -10,7 +10,7 @@ const cors = require("cors")
 
 dotenv.config()
 const app = express()
-app.use(express.json())
+app.use(express.json({limit:'5mb'}))
 app.use(cors())
 
 //Service post request to register new account
@@ -49,7 +49,7 @@ app.post("/api/auth/login", async (req,res)=>{
 
 //Service post request to submit new recipe to database
 app.post("/api/newrecipe", async (req,res)=>{
-    const {name, time, description, ingredients, instructions} = req.body
+    const {name, time, image, description, ingredients, instructions} = req.body
     
     try{
         
@@ -57,7 +57,7 @@ app.post("/api/newrecipe", async (req,res)=>{
 
         if(recipe) return res.status(401).json({"msg":"A recipe with that name already exists"})
         
-        recipe = new Recipes({name, time, description, ingredients, instructions})
+        recipe = new Recipes({name, time, image, description})
         recipe.save()
 
         const token = await jwt.sign({id:recipe._id},process.env.JWT_SECRET,{expiresIn:"1h"})
