@@ -78,6 +78,18 @@ app.get("/api/allrecipes", async (req,res)=>{
 
 })
 
+//Service get request for all recipes
+app.get("/api/viewrecipe", async (req,res)=>{
+
+    const name = "test recipe"
+
+    try{
+        const recipeInfo = await Recipes.findOne((name))
+        return res.json({"recipeData":JSON.stringify(recipeInfo)})
+    }
+    catch(err){console.log(err)}
+})
+
 //Create connection to mongoDB and start server
 async function serverStart(){
     try {
