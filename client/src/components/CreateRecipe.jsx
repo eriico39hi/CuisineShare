@@ -11,7 +11,7 @@ import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import myImage from '../assets/image-not-found.jpg'
 import InputGroup from 'react-bootstrap/InputGroup'
-
+import Buffer from 'buffer'
 
 
 function CreateRecipe() {
@@ -26,6 +26,7 @@ function CreateRecipe() {
   const[fileBuffer, setFileBuffer] = useState(null)
   const[fileName, setFileName] = useState('')
   const[fileType, setFileType] = useState('')
+  const[fileString, setFileString] = useState('')
 
 
   const onCancel = async (event) => {
@@ -44,20 +45,28 @@ function CreateRecipe() {
       
       //put logic here to verify that filetype is an image
       const freader = new FileReader()
-      freader.onload = function(fe){
-        setFileBuffer(fe.target.result)
+      freader.readAsDataURL(file)
+      
+      freader.onload = function(){
+        console.log(freader.result)
+        setFileString(freader.result)
       }
-      freader.readAsArrayBuffer(file)
+      
+      console.log(file)
+      
     }
-    console.log(fileBuffer)
+    
   }
 
-  /*
+
   const onSubmit = async (event) =>{
 
-    const image = fileBuffer //not actually sure if this is going to work
+    const image = fileString //not actually sure if this is going to work
     event.preventDefault();
 
+    const test = JSON.stringify({name,time,image,description})
+    console.log(test)
+    /*
     try{
       let response = await fetch(URL,{
         method:"POST",
@@ -67,9 +76,9 @@ function CreateRecipe() {
         body:JSON.stringify({name,time,image,description,ingredients,steps})
       })
     }
+    */
 
   } 
-  */
 
   return (<>
 
@@ -170,7 +179,7 @@ function CreateRecipe() {
       <Button className="mt-3 mx-4" variant="primary" type="button" onClick={onCancel}>
         Cancel
       </Button>
-      <Button className="mt-3" variant="primary" type="button">
+      <Button className="mt-3" variant="primary" type="button" onClick={onSubmit}>
         Submit
       </Button>   
     </Container> 
