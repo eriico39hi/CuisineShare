@@ -10,6 +10,11 @@ const recipeSchema = mongoose.Schema({
         type:Number,
         required:true
     },
+    image:{
+        type:String,
+        data:Buffer,
+        required:true
+    },
     description:{
         type:String,
         required:true

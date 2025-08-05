@@ -10,19 +10,70 @@ import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import myImage from '../assets/image-not-found.jpg'
+import InputGroup from 'react-bootstrap/InputGroup'
 
 
 
 function CreateRecipe() {
-
-  const navigate = useNavigate()
   
-  const oncancel = async (event) => {
+  const navigate = useNavigate()
+  const URL = "http://localhost:3000/api/newrecipe"
+
+  const [name, setName] = useState("")
+  const [time, setTime] = useState(0)
+  const [description, setDescription] = useState("")
+
+  const[fileBuffer, setFileBuffer] = useState(null)
+  const[fileName, setFileName] = useState('')
+  const[fileType, setFileType] = useState('')
+
+
+  const onCancel = async (event) => {
         navigate(-1)
   }
-   
-   return (<>
-        
+
+  const handleInstructions = (eInstr) =>{
+    const abc = null
+  }
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0]
+    if(file){
+      setFileName(file.name)
+      setFileType(file.type)
+      
+      //put logic here to verify that filetype is an image
+      const freader = new FileReader()
+      freader.onload = function(fe){
+        setFileBuffer(fe.target.result)
+      }
+      freader.readAsArrayBuffer(file)
+    }
+    console.log(fileBuffer)
+  }
+
+  /*
+  const onSubmit = async (event) =>{
+
+    const image = fileBuffer //not actually sure if this is going to work
+    event.preventDefault();
+
+    try{
+      let response = await fetch(URL,{
+        method:"POST",
+        headers:{
+          "content-type":"application/json"
+        },
+        body:JSON.stringify({name,time,image,description,ingredients,steps})
+      })
+    }
+
+  } 
+  */
+
+  return (<>
+
+    
 
     <Navbar expand="lg" style={{ backgroundColor: '#74cbe0ff' }}>
       <Container>
@@ -49,30 +100,38 @@ function CreateRecipe() {
         <Image src={myImage} fluid />
         </Col>
         <Col>
-         
             <Form.Group className="mb-3" controlId="name">
               <Form.Label>Recipe Name</Form.Label>
               <Form.Control 
-                type="text" />
+                type="text" 
+                value={name}
+                onChange={(e)=>setName(e.target.value)}
+                placeholder="Enter Recipe Name"/>
             </Form.Group>
               <Form.Group className="mb-3" controlId="duration">
                   <Form.Label>Est. Time (min.)</Form.Label>
               <Form.Control 
-                type="text" />
+                type="number" 
+                value={time}
+                onChange={(e)=>setTime(e.target.value)}
+                placeholder="Enter Recipe Time"/>
             </Form.Group>
               <Form.Group className="mb-3" controlId="info">
               <Form.Label>Description</Form.Label>
               <Form.Control 
                 as="textarea"
-                rows={4} />
+                rows={4} 
+                value={description}
+                onChange={(e)=>setDescription(e.target.value)}
+                placeholder="Enter Recipe Name"/>
             </Form.Group>
-          <Button className="mt-3" variant="primary" type="button">
-              Upload Picture
-          </Button>   
+          <Form.Group controlId="formFile" className="mb-3">
+            <Form.Label>Recipe Image</Form.Label>
+            <Form.Control type="file" onChange={handleFileChange}/>
+          </Form.Group>   
         </Col>
       </Row>
       <br/>
-      <Row>
         <Form.Group className="mb-3" controlId="formGridIngred1">
           <Form.Label className="fs-2 fw-bold">Ingredients</Form.Label>
           <Form.Control 
@@ -90,29 +149,26 @@ function CreateRecipe() {
           <Form.Control 
             type="text" />
         </Form.Group>
-      </Row>
-      <br/>
-       <Row>
-            <Form.Group className="mb-3" controlId="formGridInst1">
-              <Form.Label className="fs-2 fw-bold">Instructions</Form.Label>
-              <Form.Control 
-                type="text" />
-            </Form.Group>
-              <Form.Group className="mb-3" controlId="formGridInst2">
-              <Form.Control 
-                type="text" />
-            </Form.Group>
-              <Form.Group className="mb-3" controlId="formGridInst3">
-            
-              <Form.Control 
-                type="text" />
-            </Form.Group>
-              <Form.Group className="mb-3" controlId="formGridInst4">
-              <Form.Control 
-                type="text" />
-            </Form.Group>
-      </Row>
-      <Button className="mt-3 mx-4" variant="primary" type="button" onClick={oncancel}>
+      <Form.Label>Instruction Steps</Form.Label>
+      <InputGroup className="mb-3">
+        <Form.Control
+          aria-label="Instructions go here"
+          aria-describedby="basic-addon1"
+          onChange={handleInstructions}
+        />
+      </InputGroup>
+      <InputGroup className="mb-3">
+        <Button variant="outline-secondary" id="button-addon1">
+          Add Step
+        </Button>
+        <Form.Control
+          aria-label="Instructions go here"
+          aria-describedby="basic-addon1"
+          onChange={handleInstructions}
+        />
+      </InputGroup>
+
+      <Button className="mt-3 mx-4" variant="primary" type="button" onClick={onCancel}>
         Cancel
       </Button>
       <Button className="mt-3" variant="primary" type="button" onClick={onsubmit}>
@@ -121,8 +177,6 @@ function CreateRecipe() {
         </Form>
     </Container> 
         <hr/> 
-  
-
     </>);
     
 }

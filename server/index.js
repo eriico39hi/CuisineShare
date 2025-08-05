@@ -48,7 +48,7 @@ app.post("/api/auth/login", async (req,res)=>{
 })
 
 //Service post request to submit new recipe to database
-app.post("/api/recipesubmit", async (req,res)=>{
+app.post("/api/newrecipe", async (req,res)=>{
     const {name, time, description, ingredients, instructions} = req.body
     
     try{
