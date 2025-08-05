@@ -40,21 +40,21 @@ function Welcome() {
                 </Container>
             </Navbar>
             <Container className = "container d-flex justify-content-center align-items-center mt-5">
-      <Card className="text-center bg-transparent">
-        <Card.Header className="card-title text-white mt-5">CuisineShare</Card.Header>
-        <Card.Title className="card-title text-white">Get inspired for your next meal.</Card.Title>
-        <Card.Body>
-          <Container>
-              <Button className="mx-3" variant="primary" type="button" onClick={viewRecipe}>
-                View Recipes
-              </Button>
-              <Button variant="primary" type="button" onClick={addRecipe}>
-                Add Recipes
-              </Button>
-          </Container>
-        </Card.Body>
-      </Card>
-    </Container>
+                <Card className="text-center bg-transparent">
+                    <Card.Header className="card-title text-white mt-5">CuisineShare</Card.Header>
+                    <Card.Title className="card-title text-white">Get inspired for your next meal.</Card.Title>
+                    <Card.Body>
+                    <Container>
+                        <Button className="mx-3" variant="primary" type="button" onClick={viewRecipe}>
+                            View Recipes
+                        </Button>
+                        <Button variant="primary" type="button" onClick={addRecipe}>
+                            Add Recipes
+                        </Button>
+                    </Container>
+                    </Card.Body>
+                </Card>
+                </Container>
         </div>
     );
     
