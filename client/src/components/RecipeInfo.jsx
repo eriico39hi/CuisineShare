@@ -16,24 +16,34 @@ function RecipeInfo() {
     const URL = "http://localhost:3000/api/viewrecipe"
     const [recipeInfo, setRecipeInfo] = useState()
     const [loading, setLoading] = useState(true)
+    const recipeName = "test recipe"
 
     useEffect(()=>{
         const token = localStorage.getItem("token")
         const loadRecipe = async (URL)=>{
             try{
-                const response = await fetch(URL)
+                const response = await fetch(URL,{
+                    method:"POST",
+                    body:JSON.stringify({recipeName})
+                })
                 const data = await response.json()
                 setRecipeInfo(JSON.parse(data.recipeData))
-                console.log(recipeInfo)
+                
             }
             catch(err){console.log(err)}
-            finally{setLoading(false)}
+            finally{
+                setLoading(false)
+            }
+
         }
         loadRecipe(URL)
-    })
+    },[])
 
-//need to make an image decode function and stick the image into "myImage"
-
+    useEffect(()=>{
+        //this useEffect can be helpful to log stuff after loading is complete
+        console.log(loading)
+        console.log(recipeInfo)
+    },[loading])
 
     return ( <>
         {loading?(
@@ -57,7 +67,7 @@ function RecipeInfo() {
             <Container className = "mt-5">
                 <Row>
                     <Col>
-                    <Image src={myImage} fluid />
+                    <Image src={recipeInfo.image} fluid/>
                     </Col>
                     <Col>
                     <Card className = "border border-dark">
@@ -68,7 +78,7 @@ function RecipeInfo() {
                             Est. Time: {recipeInfo.time}<br/>
                             Rating <br/>
                             <br/><br/>
-                            <u>Info Goes Here</u><br/>
+                            <u>{recipeInfo.description}</u><br/>
                             <br/><br/>
                         </Card.Text>
                         </Card>
