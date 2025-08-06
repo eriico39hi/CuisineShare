@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -9,7 +9,7 @@ import Card from 'react-bootstrap/Card';
 import Spinner from 'react-bootstrap/Spinner';
 import Image from 'react-bootstrap/Image';
 import myImage from '../assets/image-not-found.jpg'
-import { useEffect } from "react";
+import ListGroup from 'react-bootstrap/ListGroup';
 
 function RecipeInfo() {
 
@@ -45,6 +45,8 @@ function RecipeInfo() {
         console.log(recipeInfo)
     },[loading])
 
+
+
     return ( <>
         {loading?(
             <Spinner animation="border" role="status">
@@ -67,11 +69,11 @@ function RecipeInfo() {
             <Container className = "mt-5">
                 <Row>
                     <Col>
-                    <Image src={recipeInfo.image} fluid/>
+                    <Image src={recipeInfo.image} fluid width="90%"/>
                     </Col>
                     <Col>
                     <Card className = "border border-dark">
-                        <Card.Title className="fs-4 fw-bold">{recipeInfo.name}</Card.Title>
+                        <Card.Title className="fs-1 fw-bold">{recipeInfo.name}</Card.Title>
                         <Card.Subtitle>Uploaded: by Mr Potato Head</Card.Subtitle>
                         <Card.Body className = "border"></Card.Body>
                         <Card.Text className="mx-4">
@@ -85,23 +87,31 @@ function RecipeInfo() {
                     </Col>
                 </Row>  
                 <hr/> 
+                
                 <Row>
-                <p>Add ingredient list here
-                    1 <br/>
-                    2<br/>
-                    3<br/>
-                    4<br/>
-                    5<br/><br/>
-                </p>
+                <div className="my-1">
+                    <h2>Ingredients</h2>
+                </div>
+                    <ListGroup className="py-0">
+                        {recipeInfo.ingredients.map((item,index) => (
+                        <ListGroup.Item className="py-0" key={index}>
+                            {item}
+                        </ListGroup.Item>
+                        ))}
+                    </ListGroup>
                 </Row>
+                 <hr/> 
                 <Row>
-                <p>Add instructions here
-                    1 <br/>
-                    2<br/>
-                    3<br/>
-                    4<br/>
-                    5<br/><br/>
-                </p>
+                    <div className="my-1">
+                        <h2>Instructions</h2>
+                    </div>
+                    <ListGroup  numbered>
+                        {recipeInfo.instructions.map((item,index) => (
+                        <ListGroup.Item className="py-0" key={index} >
+                            {item}
+                        </ListGroup.Item>
+                        ))}
+                    </ListGroup>
                 </Row>
             <hr/> 
             </Container>

@@ -19,7 +19,6 @@ const recipeSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    /*
     ingredients:{
         type:Array,
         required:true
@@ -28,7 +27,7 @@ const recipeSchema = mongoose.Schema({
         type:Array,
         required:true
     },
-    */
+
 })
 
 const Recipes = mongoose.model('Recipes',recipeSchema)
