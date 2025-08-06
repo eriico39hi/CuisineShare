@@ -22,12 +22,14 @@ function CreateRecipe() {
   const [name, setName] = useState("")
   const [time, setTime] = useState(0)
   const [description, setDescription] = useState("")
+  const [ingredients, setIngredients] = useState([{id: 0,ingredient: "",}])
+  const [instructions, setInstructions] = useState([{id: 0,instruction: "",}])
 
   const[fileBuffer, setFileBuffer] = useState(null)
   const[fileName, setFileName] = useState('')
   const[fileType, setFileType] = useState('')
   const[fileString, setFileString] = useState('')
-
+ 
 
   const onCancel = async (event) => {
         navigate(-1)
@@ -58,6 +60,38 @@ function CreateRecipe() {
     
   }
 
+   const handleAddIngred = (id) => {
+    setIngredients([...ingredients, { id: id + 1, ingredient: ''}])
+    }
+
+    const handleRemoveIngred = (i) => {
+    const values = [...ingredients]
+    values.splice(i, 1)
+    setIngredients([...values])
+    }
+
+    const handleChangeIngredInput = (i, e) => {
+    const values = [...ingredients]
+    values[i][e.target.name] = e.target.value
+    setIngredients(values)
+    }
+
+       const handleAddInstr = (id) => {
+    setInstructions([...instructions, { id: id + 1, instruction: ''}])
+    }
+
+    const handleRemoveInstr = (i) => {
+    const values = [...instructions]
+    values.splice(i, 1)
+    setInstructions([...values])
+    }
+
+    const handleChangeInstrInput = (i, e) => {
+    const values = [...instructions]
+    values[i][e.target.name] = e.target.value
+    setInstructions(values)
+    }
+
 
   const onSubmit = async (event) =>{
 
@@ -77,7 +111,6 @@ function CreateRecipe() {
       })
     }
     */
-
   } 
 
   return (<>
@@ -98,12 +131,13 @@ function CreateRecipe() {
       </Container>
     </Navbar>
     <Container className = "mt-3">
+     <Form >
       <Row>
         <Col>
         <Image src={myImage} fluid />
         </Col>
         <Col>
-          <Form >
+        
             <Form.Group className="mb-3" controlId="name">
               <Form.Label>Recipe Name</Form.Label>
               <Form.Control 
@@ -129,59 +163,78 @@ function CreateRecipe() {
                 onChange={(e)=>setDescription(e.target.value)}
                 placeholder="Enter Recipe Name"/>
             </Form.Group>
-          </Form>
-          <Form.Group controlId="formFile" className="mb-3">
-            <Form.Label>Recipe Image</Form.Label>
-            <Form.Control type="file" onChange={handleFileChange}/>
-          </Form.Group>   
+          
+            <Form.Group controlId="formFile" className="mb-3">
+              <Form.Label>Recipe Image</Form.Label>
+              <Form.Control type="file" onChange={handleFileChange}/>
+            </Form.Group>
         </Col>
       </Row>
       <hr/>
-      <Form >
-        <Form.Group className="mb-3" controlId="formGridIngred1">
-          <Form.Label>Ingredients</Form.Label>
-          <Form.Control 
-            type="text" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formGridIngred2">
-          <Form.Control 
-            type="text" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formGridIngred3">
-        
-          <Form.Control 
-            type="text" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formGridIngred4">
-          <Form.Control 
-            type="text" />
-        </Form.Group>
-      </Form>   
-      <Form.Label>Instruction Steps</Form.Label>
-      <InputGroup className="mb-3">
-        <Form.Control
-          aria-label="Instructions go here"
-          aria-describedby="basic-addon1"
-          onChange={handleInstructions}
-        />
-      </InputGroup>
-      <InputGroup className="mb-3">
-        <Button variant="outline-secondary" id="button-addon1">
-          Add Step
-        </Button>
-        <Form.Control
-          aria-label="Instructions go here"
-          aria-describedby="basic-addon1"
-          onChange={handleInstructions}
-        />
-      </InputGroup>
+      <Container>
+        <div className="my-4 border-bottom">
+            <h2>Ingredients</h2>
+        </div>
+      </Container>      
+      <Row>
+        {ingredients.map((ingredient,i) => (
+          <Form.Group className="my-1" controlId="formIngredients" key={ingredient.id}>
+            <Row>
+              <Col>
+                <Form.Control 
+                  type="text"
+                  value={ingredient.ingredient}
+                  onChange={(e) => handleChangeIngredInput(i, e)}
+                  placeholder="Enter Ingredient"/>
+                </Col>
+                <Col>        
+                  <Button className= "my-1 mx-2" variant="primary" type="button" onClick={() => handleAddIngred(i)}>
+                    +
+                  </Button>
+                  <Button disabled={ingredient.id === 0} onClick={() => handleRemoveIngred(i)} >
+                    -
+                  </Button>
+                </Col>
+            </Row>
+          </Form.Group>
+        ))}
+      </Row>
+      <Container>
+        <div className="my-4 border-bottom">
+            <h2>Instructions</h2>
+        </div>
+      </Container>
+      <Row>
+        {instructions.map((instruction,i) => (
+          <Form.Group className="my-1" controlId="formIngredients" key={instruction.id}>
+            <Row>
+              <Col>
+                <Form.Control 
+                  type="text"
+                  value={instruction.instruction}
+                  onChange={(e) => handleChangeInstrInput(i, e)}
+                  placeholder="Add Step"/>
+                </Col>
+                <Col>        
+                  <Button className= "my-1 mx-2" variant="primary" type="button" onClick={() => handleAddInstr(i)}>
+                    +
+                  </Button>
+                  <Button disabled={instruction.id === 0} onClick={() => handleRemoveInstr(i)} >
+                    -
+                  </Button>
+                </Col>
+            </Row>
+          </Form.Group>
+        ))}
+      </Row>
 
       <Button className="mt-3 mx-4" variant="primary" type="button" onClick={onCancel}>
         Cancel
       </Button>
       <Button className="mt-3" variant="primary" type="button" onClick={onSubmit}>
         Submit
-      </Button>   
+      </Button> 
+      </Form>  
     </Container> 
         <hr/> 
   
