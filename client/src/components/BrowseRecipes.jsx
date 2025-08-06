@@ -20,6 +20,7 @@ function BrowseRecipes() {
   const [fetchedAll, setFetchedAll] = useState(false)
   const [offset, setOffset] = useState(0)
   const isFetching = useRef(false)
+  const navigate = useNavigate()
 
   const baseURL = "http://localhost:3000/api/allrecipes"
 
@@ -62,6 +63,7 @@ function BrowseRecipes() {
     console.log(recipes)
   },[loading])
 
+
    return (<>
    {loading?(
       <Spinner animation="border" role="status">
@@ -92,7 +94,12 @@ function BrowseRecipes() {
   <Row>
     {recipes.map((recipe, index) => (
       <Col md={4} key={index} className="mb-4">
-        <Card className="border border-dark border-1 h-100">
+        <Card 
+        className="border border-dark border-1 h-100"
+        style={{cursor:'pointer'}}
+        onClick={()=>navigate(`/View/${recipe._id}`)}
+        role="button"
+        >
           <Card.Header>
             <Image
               src={recipe.image} fluid

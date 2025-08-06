@@ -76,7 +76,6 @@ app.get("/api/myrecipes", async (req,res)=>{
 app.get("/api/allrecipes", async (req,res)=>{
 
     const offset = parseInt(req.query.offset)
-    console.log(parseInt(req.query.offset))
     const recipe = await Recipes.findOne().skip(offset)
 
     if(!recipe){
