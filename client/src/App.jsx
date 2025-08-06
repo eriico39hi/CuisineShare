@@ -20,7 +20,7 @@ function App() {
         <Route path="/Profile" element={<Profile />} />
         <Route path="/BrowseRecipes" element={<BrowseRecipes />} />
         <Route path="/CreateRecipe" element={<CreateRecipe />} />
-        <Route path="/RecipeInfo" element={<RecipeInfo />} />
+        <Route path="/View/:recipeID" element={<RecipeInfo />} />
       </Routes>
     </BrowserRouter>
   )

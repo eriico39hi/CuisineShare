@@ -10,22 +10,22 @@ import Spinner from 'react-bootstrap/Spinner';
 import Image from 'react-bootstrap/Image';
 import myImage from '../assets/image-not-found.jpg'
 import ListGroup from 'react-bootstrap/ListGroup';
+import { useParams } from "react-router-dom";
 
 function RecipeInfo() {
 
-    const URL = "http://localhost:3000/api/viewrecipe"
+    const baseURL = "http://localhost:3000/api/view/"
     const [recipeInfo, setRecipeInfo] = useState()
     const [loading, setLoading] = useState(true)
     const recipeName = "test recipe"
+    const {recipeID} = useParams();
 
     useEffect(()=>{
         const token = localStorage.getItem("token")
+        console.log(baseURL+recipeID)
         const loadRecipe = async (URL)=>{
             try{
-                const response = await fetch(URL,{
-                    method:"POST",
-                    body:JSON.stringify({recipeName})
-                })
+                const response = await fetch(baseURL+recipeID)
                 const data = await response.json()
                 setRecipeInfo(JSON.parse(data.recipeData))
                 
@@ -43,6 +43,7 @@ function RecipeInfo() {
         //this useEffect can be helpful to log stuff after loading is complete
         console.log(loading)
         console.log(recipeInfo)
+        console.log(recipeID)
     },[loading])
 
 

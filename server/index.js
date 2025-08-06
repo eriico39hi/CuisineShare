@@ -79,12 +79,13 @@ app.get("/api/allrecipes", async (req,res)=>{
 })
 
 //Service get request for all recipes
-app.post("/api/viewrecipe", async (req,res)=>{
+app.get("/api/view/:recipeID", async (req,res)=>{
 
-    const {recipeName} = req.header
+    const {recipeID} = req.params
+    console.log(recipeID)
 
     try{
-        const recipeInfo = await Recipes.findOne({recipeName})
+        const recipeInfo = await Recipes.findOne({_id:recipeID})
         return res.json({"recipeData":JSON.stringify(recipeInfo)})
     }
     catch(err){console.log(err)}
