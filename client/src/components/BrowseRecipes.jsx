@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useEffect } from "react";
+import { useRef } from "react";
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -8,17 +10,65 @@ import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 import myImage from '../assets/image-not-found.jpg'
+import Spinner from "react-bootstrap/esm/Spinner";
 
 
 function BrowseRecipes() {
 
-  
+  const [recipes, setRecipes] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [fetchedAll, setFetchedAll] = useState(false)
+  const [offset, setOffset] = useState(0)
+  const isFetching = useRef(false)
 
+  const baseURL = "http://localhost:3000/api/allrecipes"
+
+
+  useEffect(()=>{    
+    if (fetchedAll || isFetching.current) return
+    if (offset !== recipes.length) return
+
+    const getRecipes = async ()=>{
+
+      isFetching.current = true
+      try{
+        console.log(offset)
+        const res = await fetch(`${baseURL}?offset=${offset}`)
+        if (res.status === 404){
+          setFetchedAll(true)
+          setLoading(false)
+          return
+        }
+        const data = await res.json()
+        if(!data){
+          setFetchedAll(true)
+          return
+        }
+        setRecipes(prevRecipes => [...prevRecipes, data])
+        setOffset(prevOffset => prevOffset + 1)
+      }
+      catch(err){console.log(err)}
+      finally {
+        isFetching.current = false
+      }
+    }
+
+    getRecipes()
+  },[offset,fetchedAll,recipes.length])
   
+  useEffect(()=>{
+    //this useEffect can be helpful to log stuff after loading is complete
+    console.log(loading)
+    console.log(recipes)
+  },[loading])
 
    return (<>
-    
-    
+   {loading?(
+      <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+      </Spinner>):
+      (<>
+
     <Navbar expand="lg" style={{ backgroundColor: '#74cbe0ff' }}>
       <Container>
         <Navbar.Brand className="fs-4 fw-bold" href="/Home">CuisineShare</Navbar.Brand>
@@ -37,159 +87,36 @@ function BrowseRecipes() {
         <h1>Browse Recipes</h1>
       </div>
     </Container>
-
-    {/*
-
-    <Container className = "mt-5">
-      <Row>
-        <Col md={4}>
-          <Card className = "border border-dark  border-1 ">
-            <Card.Header>
-              <Image src={myImage} fluid />
-            </Card.Header>
-            <Card.Title className="fs-4 mt-2 mx-4 fw-bold">Recipe Title</Card.Title>
-            <Card.Subtitle className="mx-4">Uploaded by: insert name</Card.Subtitle>
-            <Card.Body className = "border"></Card.Body>
-            <Card.Text className="mx-4">
-                Est. Time: <br/>
-                Rating <br/>
-                <br/><br/>
+    
+    <Container className="mt-5">
+  <Row>
+    {recipes.map((recipe, index) => (
+      <Col md={4} key={index} className="mb-4">
+        <Card className="border border-dark border-1 h-100">
+          <Card.Header>
+            <Image
+              src={recipe.image} fluid
+            />
+          </Card.Header>
+          <Card.Body>
+            <Card.Title className="fs-4 mt-2 fw-bold">
+              {recipe.name || 'Unnamed Recipe'}
+            </Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">
+              Uploaded by: {recipe.author || 'Unknown'}
+            </Card.Subtitle>
+            <Card.Text>
+              Est. Time: {recipe.time || 'N/A'} <br />
+              Rating: {recipe.rating}
             </Card.Text>
-          </Card>
-        </Col>
-        <Col md={4}>
-          <Card className = "border border-dark  border-1 ">
-            <Card.Header>
-              <Image src={myImage} fluid />
-            </Card.Header>
-            <Card.Title className="fs-4 mt-2 mx-4 fw-bold">Recipe Title</Card.Title>
-            <Card.Subtitle className="mx-4">Uploaded by: insert name</Card.Subtitle>
-            <Card.Body className = "border"></Card.Body>
-            <Card.Text className="mx-4">
-                Est. Time: <br/>
-                Rating <br/>
-                <br/><br/>
-            </Card.Text>
-          </Card>
-        </Col>
-        <Col md={4}>
-          <Card className = "border border-dark  border-1 ">
-            <Card.Header>
-              <Image src={myImage} fluid />
-            </Card.Header>
-            <Card.Title className="fs-4 mt-2 mx-4 fw-bold">Recipe Title</Card.Title>
-            <Card.Subtitle className="mx-4">Uploaded by: insert name</Card.Subtitle>
-            <Card.Body className = "border"></Card.Body>
-            <Card.Text className="mx-4">
-                Est. Time: <br/>
-                Rating <br/>
-                <br/><br/>
-            </Card.Text>
-          </Card>
-        </Col>
-      </Row>  
-        <br/> 
-       <Row>
-        <Col md={4}>
-          <Card className = "border border-dark  border-1 ">
-            <Card.Header>
-              <Image src={myImage} fluid />
-            </Card.Header>
-            <Card.Title className="fs-4 mt-2 mx-4 fw-bold">Recipe Title</Card.Title>
-            <Card.Subtitle className="mx-4">Uploaded by: insert name</Card.Subtitle>
-            <Card.Body className = "border"></Card.Body>
-            <Card.Text className="mx-4">
-                Est. Time: <br/>
-                Rating <br/>
-                <br/><br/>
-            </Card.Text>
-          </Card>
-        </Col>
-        <Col md={4}>
-          <Card className = "border border-dark  border-1 ">
-            <Card.Header>
-              <Image src={myImage} fluid />
-            </Card.Header>
-            <Card.Title className="fs-4 mt-2 mx-4 fw-bold">Recipe Title</Card.Title>
-            <Card.Subtitle className="mx-4">Uploaded by: insert name</Card.Subtitle>
-            <Card.Body className = "border"></Card.Body>
-            <Card.Text className="mx-4">
-                Est. Time: <br/>
-                Rating <br/>
-                <br/><br/>
-            </Card.Text>
-          </Card>
-        </Col>
-        <Col md={4}>
-          <Card className = "border border-dark  border-1 ">
-            <Card.Header>
-              <Image src={myImage} fluid />
-            </Card.Header>
-            <Card.Title className="fs-4 mt-2 mx-4 fw-bold">Recipe Title</Card.Title>
-            <Card.Subtitle className="mx-4">Uploaded by: insert name</Card.Subtitle>
-            <Card.Body className = "border"></Card.Body>
-            <Card.Text className="mx-4">
-                Est. Time: <br/>
-                Rating <br/>
-                <br/><br/>
-            </Card.Text>
-          </Card>
-        </Col>
-      </Row>  
-      <br/>
-       <Row>
-        <Col md={4}>
-          <Card className = "border border-dark  border-1 ">
-            <Card.Header>
-              <Image src={myImage} fluid />
-            </Card.Header>
-            <Card.Title className="fs-4 mt-2 mx-4 fw-bold">Recipe Title</Card.Title>
-            <Card.Subtitle className="mx-4">Uploaded by: insert name</Card.Subtitle>
-            <Card.Body className = "border"></Card.Body>
-            <Card.Text className="mx-4">
-                Est. Time: <br/>
-                Rating <br/>
-                <br/><br/>
-            </Card.Text>
-          </Card>
-        </Col>
-        <Col md={4}>
-          <Card className = "border border-dark  border-1 ">
-            <Card.Header>
-              <Image src={myImage} fluid />
-            </Card.Header>
-            <Card.Title className="fs-4 mt-2 mx-4 fw-bold">Recipe Title</Card.Title>
-            <Card.Subtitle className="mx-4">Uploaded by: insert name</Card.Subtitle>
-            <Card.Body className = "border"></Card.Body>
-            <Card.Text className="mx-4">
-                Est. Time: <br/>
-                Rating <br/>
-                <br/><br/>
-            </Card.Text>
-          </Card>
-        </Col>
-        <Col md={4}>
-          <Card className = "border border-dark  border-1 ">
-            <Card.Header>
-              <Image src={myImage} fluid />
-            </Card.Header>
-            <Card.Title className="fs-4 mt-2 mx-4 fw-bold">Recipe Title</Card.Title>
-            <Card.Subtitle className="mx-4">Uploaded by: insert name</Card.Subtitle>
-            <Card.Body className = "border"></Card.Body>
-            <Card.Text className="mx-4">
-                Est. Time: <br/>
-                Rating <br/>
-                <br/><br/>
-            </Card.Text>
-          </Card>
-        </Col>
-      </Row>  
-    <hr/> 
-    </Container>
-
-    */}
+          </Card.Body>
+        </Card>
+      </Col>
+    ))}
+  </Row>
+</Container>
   
-  </>);  
-}
+  </>)}
+</>)}
 
 export default BrowseRecipes;

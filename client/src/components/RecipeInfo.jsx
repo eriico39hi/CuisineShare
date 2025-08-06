@@ -17,13 +17,12 @@ function RecipeInfo() {
     const baseURL = "http://localhost:3000/api/view/"
     const [recipeInfo, setRecipeInfo] = useState()
     const [loading, setLoading] = useState(true)
-    const recipeName = "test recipe"
-    const {recipeID} = useParams();
+    const {recipeID} = useParams()
 
     useEffect(()=>{
-        const token = localStorage.getItem("token")
+
         console.log(baseURL+recipeID)
-        const loadRecipe = async (URL)=>{
+        const loadRecipe = async ()=>{
             try{
                 const response = await fetch(baseURL+recipeID)
                 const data = await response.json()
@@ -36,7 +35,7 @@ function RecipeInfo() {
             }
 
         }
-        loadRecipe(URL)
+        loadRecipe()
     },[])
 
     useEffect(()=>{

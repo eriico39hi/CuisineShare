@@ -75,6 +75,14 @@ app.get("/api/myrecipes", async (req,res)=>{
 //Service get request for all recipes
 app.get("/api/allrecipes", async (req,res)=>{
 
+    const offset = parseInt(req.query.offset)
+    console.log(parseInt(req.query.offset))
+    const recipe = await Recipes.findOne().skip(offset)
+
+    if(!recipe){
+        return res.status(404).json({error: 'No more recipes'})
+    }
+    res.json(recipe)
 
 })
 
