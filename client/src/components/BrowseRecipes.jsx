@@ -11,6 +11,9 @@ import myImage from '../assets/image-not-found.jpg'
 
 
 function BrowseRecipes() {
+
+  
+
   
 
    return (<>
@@ -34,6 +37,9 @@ function BrowseRecipes() {
         <h1>Browse Recipes</h1>
       </div>
     </Container>
+
+    {/*
+
     <Container className = "mt-5">
       <Row>
         <Col md={4}>
@@ -180,6 +186,8 @@ function BrowseRecipes() {
       </Row>  
     <hr/> 
     </Container>
+
+    */}
   
   </>);  
 }

@@ -82,7 +82,6 @@ app.get("/api/allrecipes", async (req,res)=>{
 app.get("/api/view/:recipeID", async (req,res)=>{
 
     const {recipeID} = req.params
-    console.log(recipeID)
 
     try{
         const recipeInfo = await Recipes.findOne({_id:recipeID})
