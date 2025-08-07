@@ -5,23 +5,22 @@
 On the main terminal, run the code below to install frontend and backend dependencies.
 
 For frontend, run:  
-`cd client` &nbsp; &nbsp; (use ../client if you are in the server folder)
-`npm install`
+<br>`cd client` &nbsp; &nbsp; (use ../client if you are in the server folder)
+<br>`npm install`
 
 
 For backend, run:   
-`cd server` &nbsp; &nbsp; (use ../server if you are in the client folder)
-`npm install`
+<br>`cd server` &nbsp; &nbsp; (use ../server if you are in the client folder)
+<br>`npm install`
 
 # 2. Update Environment Variables
 
 In the the .env file inside the server/ directory, edit the MONGODB_URI and JWT_SECRET fields with your own values. (Note: getting the mongoDB connection string requires a mongodb account)
 
-
-`MONGODB_URI= mongodb_connection_string`
+<br>`MONGODB_URI= mongodb_connection_string`
 <br>(e.g. mongodb+srv://<db_username>:<db_password>@cluster0.etbixwo.mongodb.net/StudentPortal)
-`PORT=3000`
-`JWT_SECRET= jwt_secret` &nbsp; &nbsp; (This can be any string)
+<br>`PORT=3000`
+<br>`JWT_SECRET= jwt_secret` &nbsp; &nbsp; (This can be any string)
 
 
 # 3. Start the server
