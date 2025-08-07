@@ -57,7 +57,7 @@ app.post("/api/newrecipe", async (req,res)=>{
 
         if(recipe) return res.status(401).json({"msg":"A recipe with that name already exists"})
         
-        recipe = new Recipes({name, time, image, description})
+        recipe = new Recipes({name, time, image, description, ingredients, instructions})
         recipe.save()
 
         const token = await jwt.sign({id:recipe._id},process.env.JWT_SECRET,{expiresIn:"1h"})

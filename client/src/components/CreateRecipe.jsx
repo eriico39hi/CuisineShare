@@ -6,13 +6,9 @@ import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import myImage from '../assets/image-not-found.jpg'
-import InputGroup from 'react-bootstrap/InputGroup'
-import Buffer from 'buffer'
-
 
 function CreateRecipe() {
   
@@ -22,13 +18,14 @@ function CreateRecipe() {
   const [name, setName] = useState("")
   const [time, setTime] = useState(0)
   const [description, setDescription] = useState("")
-  const [ingredients, setIngredients] = useState([{id: 0,ingredient: "",}])
-  const [instructions, setInstructions] = useState([{id: 0,instruction: "",}])
+  const [ingredients, setIngredients] = useState([{ingredient: ""}])
+  const [instructions, setInstructions] = useState([{instruction: ""}])
 
   const[fileBuffer, setFileBuffer] = useState(null)
   const[fileName, setFileName] = useState('')
   const[fileType, setFileType] = useState('')
   const[fileString, setFileString] = useState('')
+  const[file, setFile] = useState(null)
  
 
   const onCancel = async (event) => {
@@ -44,6 +41,8 @@ function CreateRecipe() {
     if(file){
       setFileName(file.name)
       setFileType(file.type)
+      setFile(window.URL.createObjectURL(file));
+      
       
       //put logic here to verify that filetype is an image
       const freader = new FileReader()
@@ -56,41 +55,46 @@ function CreateRecipe() {
       
       console.log(file)
       
-    }
-    
+    }  
   }
 
-   const handleAddIngred = (id) => {
-    setIngredients([...ingredients, { id: id + 1, ingredient: ''}])
-    }
+  const handleAddIngred = () => {
+    setIngredients([...ingredients, { ingredient: ''}])
+    console.log(ingredients)
+  }
 
-    const handleRemoveIngred = (i) => {
+  const handleRemoveIngred = (index) => {
     const values = [...ingredients]
-    values.splice(i, 1)
+    values.splice(index, 1)
     setIngredients([...values])
-    }
+    console.log(ingredients)
+  }
 
-    const handleChangeIngredInput = (i, e) => {
+  const handleChangeIngredInput = (index, e) => {
     const values = [...ingredients]
-    values[i][e.target.name] = e.target.value
+    values[index][e.target.name] = e.target.value
     setIngredients(values)
-    }
+    console.log(ingredients)
+  }
 
-       const handleAddInstr = (id) => {
-    setInstructions([...instructions, { id: id + 1, instruction: ''}])
-    }
+  const handleAddInstr = () => {
+    setInstructions([...instructions, {instruction: ''}])
+ 
+  }
 
-    const handleRemoveInstr = (i) => {
+  const handleRemoveInstr = (index) => {
     const values = [...instructions]
-    values.splice(i, 1)
+    values.splice(index, 1)
     setInstructions([...values])
-    }
 
-    const handleChangeInstrInput = (i, e) => {
+  }
+
+  const handleChangeInstrInput = (index, e) => {
     const values = [...instructions]
-    values[i][e.target.name] = e.target.value
+    values[index][e.target.name] = e.target.value
     setInstructions(values)
-    }
+    console.log(instructions)
+  }
 
 
   const onSubmit = async (event) =>{
@@ -98,24 +102,22 @@ function CreateRecipe() {
     const image = fileString //not actually sure if this is going to work
     event.preventDefault();
 
-    const test = JSON.stringify({name,time,image,description})
+    const test = JSON.stringify({name,time,image,description,ingredients,instructions})
     console.log(test)
-    /*
+    
     try{
       let response = await fetch(URL,{
         method:"POST",
         headers:{
           "content-type":"application/json"
         },
-        body:JSON.stringify({name,time,image,description,ingredients,steps})
+        body:JSON.stringify({name,time,image,description,ingredients,instructions})
       })
     }
-    */
+    catch(err){console.log(err)}
   } 
 
   return (<>
-
-    
 
     <Navbar expand="lg" style={{ backgroundColor: '#74cbe0ff' }}>
       <Container>
@@ -126,18 +128,23 @@ function CreateRecipe() {
                 <Nav.Link className="text-black" href="/Home">Home</Nav.Link>
                 <Nav.Link className="text-black" href="/BrowseRecipes">All Recipes</Nav.Link>
                 <Nav.Link className="text-black" href="/CreateRecipe">Add Recipe</Nav.Link>
+                <Nav.Link className="text-black" href="/Profile">Profile</Nav.Link>
             </Nav>
         </Navbar.Collapse>            
       </Container>
     </Navbar>
+     <Container>
+      <div className="my-4 pb-2 border-bottom">
+        <h1>Create New Recipe</h1>
+      </div>
+    </Container>
     <Container className = "mt-3">
-     <Form >
+     <Form onSubmit={onSubmit}>
       <Row>
         <Col>
-        <Image src={myImage} fluid />
+            <Image src={file||myImage} fluid className="border border-dark border-1 h-100"/>
         </Col>
         <Col>
-        
             <Form.Group className="mb-3" controlId="name">
               <Form.Label>Recipe Name</Form.Label>
               <Form.Control 
@@ -163,10 +170,10 @@ function CreateRecipe() {
                 onChange={(e)=>setDescription(e.target.value)}
                 placeholder="Enter Recipe Name"/>
             </Form.Group>
-          
-            <Form.Group controlId="formFile" className="mb-3">
+              <Form.Group controlId="formFile" className="mb-3">
               <Form.Label>Recipe Image</Form.Label>
               <Form.Control type="file" onChange={handleFileChange}/>
+           
             </Form.Group>
         </Col>
       </Row>
@@ -177,21 +184,22 @@ function CreateRecipe() {
         </div>
       </Container>      
       <Row>
-        {ingredients.map((ingredient,i) => (
-          <Form.Group className="my-1" controlId="formIngredients" key={ingredient.id}>
+        {ingredients.map((ingredient,index) => (
+          <Form.Group className="my-1" controlId="formIngredients" key={index}>
             <Row>
               <Col>
                 <Form.Control 
                   type="text"
+                  name="ingredient"
                   value={ingredient.ingredient}
-                  onChange={(e) => handleChangeIngredInput(i, e)}
+                  onChange={(e) => handleChangeIngredInput(index, e)}
                   placeholder="Enter Ingredient"/>
                 </Col>
                 <Col>        
-                  <Button className= "my-1 mx-2" variant="primary" type="button" onClick={() => handleAddIngred(i)}>
+                  <Button disabled={(index+1)<ingredients.length} className= "my-1 mx-2" variant="primary" type="button" onClick={() => handleAddIngred()}>
                     +
                   </Button>
-                  <Button disabled={ingredient.id === 0} onClick={() => handleRemoveIngred(i)} >
+                  <Button disabled={index === 0 && ingredients.length===1} onClick={() => handleRemoveIngred(index)} >
                     -
                   </Button>
                 </Col>
@@ -205,21 +213,22 @@ function CreateRecipe() {
         </div>
       </Container>
       <Row>
-        {instructions.map((instruction,i) => (
-          <Form.Group className="my-1" controlId="formIngredients" key={instruction.id}>
+        {instructions.map((instruction,index) => (
+          <Form.Group className="my-1" controlId="formIngredients" key={index}>
             <Row>
               <Col>
                 <Form.Control 
                   type="text"
+                  name="instruction"
                   value={instruction.instruction}
-                  onChange={(e) => handleChangeInstrInput(i, e)}
+                  onChange={(e) => handleChangeInstrInput(index, e)}
                   placeholder="Add Step"/>
                 </Col>
                 <Col>        
-                  <Button className= "my-1 mx-2" variant="primary" type="button" onClick={() => handleAddInstr(i)}>
+                  <Button disabled={(index+1)<instructions.length} className = "my-1 mx-2" variant="primary" type="button" onClick={() => handleAddInstr()}>
                     +
                   </Button>
-                  <Button disabled={instruction.id === 0} onClick={() => handleRemoveInstr(i)} >
+                  <Button disabled={index === 0 && instructions.length===1} onClick={() => handleRemoveInstr(index)} >
                     -
                   </Button>
                 </Col>
