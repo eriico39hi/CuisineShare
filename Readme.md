@@ -18,7 +18,8 @@ For backend, run:
 In the the .env file inside the server/ directory, edit the MONGODB_URI and JWT_SECRET fields with your own values. (Note: getting the mongoDB connection string requires a mongodb account)
 
 
-`MONGODB_URI= mongodb_connection_string` &nbsp; &nbsp;(e.g. mongodb+srv://<db_username>:<db_password>@cluster0.etbixwo.mongodb.net/StudentPortal)
+`MONGODB_URI= mongodb_connection_string`
+<br>(e.g. mongodb+srv://<db_username>:<db_password>@cluster0.etbixwo.mongodb.net/StudentPortal)
 `PORT=3000`
 `JWT_SECRET= jwt_secret` &nbsp; &nbsp; (This can be any string)
 
