@@ -24,7 +24,7 @@ app.post("/api/auth/register", async (req,res)=>{
         user = new Users({username,email,password:passwordHash})
         user.save()
 
-        const token = await jwt.sign({id:user._id},process.env.JWT_SECRET,{expiresIn:"1h"})
+        const token = await jwt.sign({id:user._id,user:username},process.env.JWT_SECRET,{expiresIn:"1h"})
         res.status(200).json({id:user._id,token})
     }
     catch(err){console.log(err)}
