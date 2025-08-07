@@ -20,20 +20,22 @@ function CreateRecipe() {
   const [description, setDescription] = useState("")
   const [ingredients, setIngredients] = useState([{ingredient: ""}])
   const [instructions, setInstructions] = useState([{instruction: ""}])
+  
 
-  const[fileBuffer, setFileBuffer] = useState(null)
   const[fileName, setFileName] = useState('')
   const[fileType, setFileType] = useState('')
   const[fileString, setFileString] = useState('')
   const[file, setFile] = useState(null)
  
+  const navItems = [
+    { label: 'Home', path: '/' },
+    { label: 'All Recipes', path: '/BrowseRecipes' },
+    { label: 'Add Recipe', path: '/CreateRecipe' },
+    { label: 'My Recipes', path: '/MyRecipes' },
+  ]
 
   const onCancel = async (event) => {
         navigate(-1)
-  }
-
-  const handleInstructions = (eInstr) =>{
-    const abc = null
   }
 
   const handleFileChange = (e) => {
@@ -130,10 +132,11 @@ function CreateRecipe() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto" >
-                <Nav.Link className="text-black" href="/Home">Home</Nav.Link>
-                <Nav.Link className="text-black" href="/BrowseRecipes">All Recipes</Nav.Link>
-                <Nav.Link className="text-black" href="/CreateRecipe">Add Recipe</Nav.Link>
-                <Nav.Link className="text-black" href="/Profile">Profile</Nav.Link>
+              {navItems.map((item,index) => (
+                <Nav.Link className="text-black"  key={index} href={item.path}>
+                {item.label}
+                </Nav.Link>
+            ))}
             </Nav>
         </Navbar.Collapse>            
       </Container>

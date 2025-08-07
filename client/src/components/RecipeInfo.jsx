@@ -19,6 +19,8 @@ function RecipeInfo() {
     const [loading, setLoading] = useState(true)
     const {recipeID} = useParams()
 
+
+    
     useEffect(()=>{
 
         console.log(baseURL+recipeID)
@@ -59,9 +61,11 @@ function RecipeInfo() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto" >
-                        <Nav.Link className="text-black" href="/Home">Home</Nav.Link>
-                        <Nav.Link className="text-black" href="/BrowseRecipes">All Recipes</Nav.Link>
-                        <Nav.Link className="text-black" href="/CreateRecipe">Add Recipe</Nav.Link>
+                    {navItems.map((item,index) => (
+                        <Nav.Link className="text-black"  key={index} href={item.path}>
+                        {item.label}
+                        </Nav.Link>
+                    ))}
                     </Nav>
                 </Navbar.Collapse>            
             </Container>

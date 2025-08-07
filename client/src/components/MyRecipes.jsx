@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
@@ -10,9 +11,14 @@ import Button from 'react-bootstrap/Button';
 import myImage from '../assets/image-not-found.jpg'
 
 
+function MyRecipes() {
 
-
-function Profile() {
+const navItems = [
+    { label: 'Home', path: '/' },
+    { label: 'All Recipes', path: '/BrowseRecipes' },
+    { label: 'Add Recipe', path: '/CreateRecipe' },
+    { label: 'My Recipes', path: '/MyRecipes' },
+  ];
 
     const navigate = useNavigate()
   
@@ -25,6 +31,15 @@ function Profile() {
             <Container>
                 <Navbar.Brand className="fs-4 fw-bold" href="/Home">CuisineShare</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="ms-auto" >
+                        {navItems.map((item,index) => (
+                            <Nav.Link className="text-black"  key={index} href={item.path}>
+                            {item.label}
+                            </Nav.Link>
+                        ))}
+                    </Nav>
+                </Navbar.Collapse>                            
             </Container>
         </Navbar>
         <Container>
@@ -150,4 +165,4 @@ function Profile() {
     </>);
 }
 
-export default Profile;
+export default MyRecipes;
