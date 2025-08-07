@@ -11,6 +11,7 @@ import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 import myImage from '../assets/image-not-found.jpg'
 import Spinner from "react-bootstrap/esm/Spinner";
+import { jwtDecode } from "jwt-decode"
 
 
 function BrowseRecipes() {
@@ -60,7 +61,10 @@ function BrowseRecipes() {
   useEffect(()=>{
     //this useEffect can be helpful to log stuff after loading is complete
     console.log(loading)
-    console.log(recipes)
+    console.log(localStorage.getItem("token"))
+    
+    const token = localStorage.getItem("token")
+    if(localStorage.getItem("token") != null){console.log(jwtDecode(token))}
   },[loading])
 
 

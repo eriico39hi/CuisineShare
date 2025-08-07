@@ -22,7 +22,11 @@ function Welcome() {
     }
         
      const addRecipe = async (event) => {
-        navigate("/CreateRecipe")
+        if(localStorage.getItem("token") != null){
+            navigate("/CreateRecipe")
+        } else {
+            navigate("/Login")
+        }
     }
 
     return (
