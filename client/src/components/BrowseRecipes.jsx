@@ -68,9 +68,12 @@ function BrowseRecipes() {
     //this useEffect can be helpful to log stuff after loading is complete
     console.log(loading)
     console.log(localStorage.getItem("token"))
-    
+    //localStorage.removeItem("token")
     const token = localStorage.getItem("token")
-    if(localStorage.getItem("token") != null){console.log(jwtDecode(token))}
+    if(localStorage.getItem("token") != null){
+      console.log(jwtDecode(token).user)
+   
+    }
   },[loading])
 
 

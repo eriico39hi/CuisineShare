@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import myImage from '../assets/image-not-found.jpg'
+import { jwtDecode } from "jwt-decode"
 
 function CreateRecipe() {
   
@@ -102,10 +103,14 @@ function CreateRecipe() {
   const onSubmit = async (event) =>{
 
     const image = fileString
+    let author = "Unknown"
+    const token = localStorage.getItem("token")
     event.preventDefault();
+    console.log(jwtDecode(token).user)
 
-    const test = JSON.stringify({name,time,image,description,ingredients,instructions})
-    console.log(test)
+    if(token != null){
+      author = jwtDecode(token).user
+    }
     
     try{
       let response = await fetch(URL,{
@@ -113,7 +118,7 @@ function CreateRecipe() {
         headers:{
           "content-type":"application/json"
         },
-        body:JSON.stringify({name,time,image,description,ingredients,instructions})
+        body:JSON.stringify({name,author,time,image,description,ingredients,instructions})
       })
 
       const data = await response.json()

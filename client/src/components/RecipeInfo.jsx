@@ -78,7 +78,7 @@ function RecipeInfo() {
                     <Col>
                     <Card className = "border border-dark">
                         <Card.Title className="fs-1 fw-bold">{recipeInfo.name}</Card.Title>
-                        <Card.Subtitle>Uploaded: by Mr Potato Head</Card.Subtitle>
+                        <Card.Subtitle>Uploaded: {recipeInfo.author}</Card.Subtitle>
                         <Card.Body className = "border"></Card.Body>
                         <Card.Text className="mx-4">
                             Est. Time: {recipeInfo.time}<br/>

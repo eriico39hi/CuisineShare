@@ -30,6 +30,7 @@ function Login() {
           })
             const data = await response.json()
             const token = data.token
+            console.log(data)
             if(response.ok && token){
               localStorage.setItem("token",token)
               navigate("/profile")
