@@ -99,7 +99,7 @@ function CreateRecipe() {
 
   const onSubmit = async (event) =>{
 
-    const image = fileString //not actually sure if this is going to work
+    const image = fileString
     event.preventDefault();
 
     const test = JSON.stringify({name,time,image,description,ingredients,instructions})
@@ -113,9 +113,14 @@ function CreateRecipe() {
         },
         body:JSON.stringify({name,time,image,description,ingredients,instructions})
       })
+
+      const data = await response.json()
+      console.log(data)
+      navigate(`/View/${data.id}`)
     }
+
     catch(err){console.log(err)}
-   } 
+  } 
 
   return (<>
 
