@@ -10,7 +10,9 @@ import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import myImage from '../assets/image-not-found.jpg'
 import { jwtDecode } from "jwt-decode"
-
+import { useRef } from "react";
+import { useEffect } from "react";
+import Spinner from "react-bootstrap/esm/Spinner";
 
 function MyRecipes() {
 
@@ -19,22 +21,69 @@ const navItems = [
     { label: 'All Recipes', path: '/BrowseRecipes' },
     { label: 'Add Recipe', path: '/CreateRecipe' },
     { label: 'My Recipes', path: '/MyRecipes' },
-  ];
+    ];
+
+    const baseURL = "http://localhost:3000/api/myrecipes"
 
     const [myRecipes, setMyRecipes] = useState([])
-
+    const username = jwtDecode(localStorage.getItem("token")).user
+    const [loading, setLoading] = useState(true)
+    const [fetchedAll, setFetchedAll] = useState(false)
+    const [offset, setOffset] = useState(0)
+    const isFetching = useRef(false)
     const navigate = useNavigate()
   
     const addRecipe = async (event) => {
         navigate("/CreateRecipe")
     }
 
-    const logout = async (event) => {
+    const logout = async () => {
         localStorage.removeItem("token")
         navigate("/")
     }
 
+
+    useEffect(()=>{    
+        if (fetchedAll || isFetching.current) return
+        if (offset !== myRecipes.length) return
+
+        const getMyRecipes = async ()=>{
+
+            isFetching.current = true
+            try{
+                console.log(offset)
+                const res = await fetch(`${baseURL}?offset=${offset}&user=${username}`)
+                if (res.status === 404){
+                    setFetchedAll(true)
+                    setLoading(false)
+                    return
+                }
+                const data = await res.json()
+                if(!data){
+                    setFetchedAll(true)
+                    return
+                }
+                setMyRecipes(prevRecipes => [...prevRecipes, data])
+                setOffset(prevOffset => prevOffset + 1)
+            }
+            catch(err){
+                console.log(err)
+            } finally {
+                isFetching.current = false
+            }
+        }
+
+        getMyRecipes()
+    },[offset,fetchedAll,myRecipes.length])
+
+
     return(<>
+    {loading?(
+      <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+      </Spinner>):
+      (<>
+
         <Navbar expand="lg" style={{ backgroundColor: '#74cbe0ff' }}>
             <Container>
                 <Navbar.Brand className="fs-4 fw-bold" href="/Home">CuisineShare</Navbar.Brand>
@@ -52,7 +101,7 @@ const navItems = [
         </Navbar>
         <Container>
             <div className="my-4 border-bottom">
-             <h1> Welcome, {jwtDecode(localStorage.getItem("token")).user}</h1>
+             <h1> Welcome, {username}</h1>
             </div>
         </Container>
         <Container className="d-flex justify-content-end">
@@ -159,7 +208,7 @@ const navItems = [
                 </Col>
             </Row>
         </Container>  
-    </>);
-}
+    </>)}
+</>)}
 
 export default MyRecipes;

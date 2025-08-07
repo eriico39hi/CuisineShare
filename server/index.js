@@ -69,6 +69,19 @@ app.post("/api/newrecipe", async (req,res)=>{
 //Service get request for my recipes
 app.get("/api/myrecipes", async (req,res)=>{
 
+    const user = req.query.user
+    const offset = parseInt(req.query.offset)
+
+    console.log(req.query)
+    console.log(user)
+    console.log(offset)
+
+    const recipe = await Recipes.findOne({author:user}).skip(offset)
+
+    if(!recipe){
+        return res.status(404).json({error: 'No more recipes'})
+    }
+    res.json(recipe)
 
 })
 
