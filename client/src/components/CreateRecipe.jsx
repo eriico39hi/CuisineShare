@@ -72,7 +72,7 @@ function CreateRecipe() {
 
   const handleChangeIngredInput = (index, e) => {
     const values = [...ingredients]
-    values[index][e.target.name] = e.target.value
+    values[index]= e.target.value
     setIngredients(values)
     console.log(ingredients)
   }
@@ -91,7 +91,7 @@ function CreateRecipe() {
 
   const handleChangeInstrInput = (index, e) => {
     const values = [...instructions]
-    values[index][e.target.name] = e.target.value
+    values[index] = e.target.value
     setInstructions(values)
     console.log(instructions)
   }
@@ -115,7 +115,7 @@ function CreateRecipe() {
       })
     }
     catch(err){console.log(err)}
-  } 
+   } 
 
   return (<>
 
