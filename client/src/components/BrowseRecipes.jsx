@@ -106,15 +106,15 @@ function BrowseRecipes() {
     </Container>
     
     <Container className="mt-5">
-  <Row>
-    {recipes.map((recipe, index) => (
-      <Col md={4} key={index} className="mb-4">
-        <Card 
-        className="border border-dark border-1 h-100"
-        style={{cursor:'pointer'}}
-        onClick={()=>navigate(`/View/${recipe._id}`)}
-        role="button"
-        >
+    <Row>
+      {recipes.map((recipe, index) => (
+        <Col md={4} key={index} className="mb-4">
+          <Card 
+          className="border border-dark border-1 h-100"
+          style={{cursor:'pointer'}}
+          onClick={()=>navigate(`/View/${recipe._id}`)}
+          role="button"
+          >
           <Card.Header>
             <Image
               src={recipe.image} fluid

@@ -9,6 +9,7 @@ import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import myImage from '../assets/image-not-found.jpg'
+import { jwtDecode } from "jwt-decode"
 
 
 function MyRecipes() {
@@ -20,10 +21,17 @@ const navItems = [
     { label: 'My Recipes', path: '/MyRecipes' },
   ];
 
+    const [myRecipes, setMyRecipes] = useState([])
+
     const navigate = useNavigate()
   
     const addRecipe = async (event) => {
         navigate("/CreateRecipe")
+    }
+
+    const logout = async (event) => {
+        localStorage.removeItem("token")
+        navigate("/")
     }
 
     return(<>
@@ -44,7 +52,7 @@ const navItems = [
         </Navbar>
         <Container>
             <div className="my-4 border-bottom">
-             <h1> Welcome, Insert Name Here!</h1>
+             <h1> Welcome, {jwtDecode(localStorage.getItem("token")).user}</h1>
             </div>
         </Container>
         <Container className="d-flex justify-content-end">
@@ -52,61 +60,50 @@ const navItems = [
             <Button variant="primary" type="button" onClick={addRecipe}>
                 Add New Recipe
             </Button>
+            &nbsp;
+            <Button variant="primary" type="button" onClick={logout}>
+                Logout
+            </Button>
         </Container>    
         <Container>
             <div className="my-4 border-bottom">
                 <h2>My Recipes</h2>
             </div>
-        </Container>            
-        <Container>
+        </Container>
+
+        <Container className="mt-5">
             <Row>
-                <Col md={4}>
-                    <Card className = "border border-dark  border-1 ">
+                {myRecipes.map((recipe, index) => (
+                <Col md={4} key={index} className="mb-4">
+                    <Card 
+                        className="border border-dark border-1 h-100"
+                        style={{cursor:'pointer'}}
+                        onClick={()=>navigate(`/View/${recipe._id}`)}
+                        role="button"
+                        >
                         <Card.Header>
-                            <Image src={myImage} fluid />
+                            <Image
+                            src={recipe.image} fluid
+                            />
                         </Card.Header>
-                        <Card.Title className="fs-4 mt-2 mx-4 fw-bold">Recipe Title</Card.Title>
-                        <Card.Subtitle className="mx-4">Uploaded by: insert name</Card.Subtitle>
-                        <Card.Body className = "border"></Card.Body>
-                        <Card.Text className="mx-4">
-                            Est. Time: <br/>
-                            Rating <br/>
-                            <br/><br/>
-                        </Card.Text>
+                        <Card.Body>
+                            <Card.Title className="fs-4 mt-2 fw-bold">
+                                {recipe.name || 'Unnamed Recipe'}
+                            </Card.Title>
+                            <Card.Subtitle className="mb-2 text-muted">
+                                Uploaded by: {recipe.author || 'Unknown'}
+                            </Card.Subtitle>
+                            <Card.Text>
+                                Est. Time: {recipe.time || 'N/A'} <br />
+                                Rating: {recipe.rating}
+                            </Card.Text>
+                        </Card.Body>
                     </Card>
                 </Col>
-                <Col md={4}>
-                    <Card className = "border border-dark  border-1 ">
-                        <Card.Header>
-                            <Image src={myImage} fluid />
-                        </Card.Header>
-                        <Card.Title className="fs-4 mt-2 mx-4 fw-bold">Recipe Title</Card.Title>
-                        <Card.Subtitle className="mx-4">Uploaded by: insert name</Card.Subtitle>
-                        <Card.Body className = "border"></Card.Body>
-                        <Card.Text className="mx-4">
-                            Est. Time: <br/>
-                            Rating <br/>
-                            <br/><br/>
-                        </Card.Text>
-                    </Card>
-                </Col>
-                <Col md={4}>
-                    <Card className = "border border-dark  border-1 ">
-                        <Card.Header>
-                            <Image src={myImage} fluid />
-                        </Card.Header>
-                        <Card.Title className="fs-4 mt-2 mx-4 fw-bold">Recipe Title</Card.Title>
-                        <Card.Subtitle className="mx-4">Uploaded by: insert name</Card.Subtitle>
-                        <Card.Body className = "border"></Card.Body>
-                        <Card.Text className="mx-4">
-                            Est. Time: <br/>
-                            Rating <br/>
-                            <br/><br/>
-                        </Card.Text>
-                    </Card>
-                </Col>
+                ))}
             </Row>
-        </Container>  
+        </Container>
+
         <hr/> 
         <Container>
             <div className="my-4 border-bottom">

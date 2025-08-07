@@ -33,7 +33,7 @@ function Login() {
             console.log(data)
             if(response.ok && token){
               localStorage.setItem("token",token)
-              navigate("/profile")
+              navigate("/MyRecipes")
             }
             else{
               alert(data.msg || "Login failed!")
