@@ -27,16 +27,16 @@ In the the .env file inside the server/ directory, edit the MONGODB_URI and JWT_
 
 On the main terminal, run the code below to start the server.
 
-`cd server`
-`node index.js`
+<br>`cd server`
+<br>`node index.js`
 
 
 # 4. Start the client and View Website
 
 Open a second terminal and run the code below to start the client.
 
-`cd client`
-`npm run dev`
+<br>`cd client`
+<br>`npm run dev`
 
 You should see a similar link (See below) on the terminal to view the site. Ctrl+LeftClick the link to visit and view the web application
 [http://localhost:5173](http://localhost:5173)
