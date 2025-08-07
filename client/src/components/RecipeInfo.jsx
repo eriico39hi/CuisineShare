@@ -14,6 +14,13 @@ import { useParams } from "react-router-dom";
 
 function RecipeInfo() {
 
+    const navItems = [
+        { label: 'Home', path: '/' },
+        { label: 'All Recipes', path: '/BrowseRecipes' },
+        { label: 'Add Recipe', path: '/CreateRecipe' },
+        { label: 'My Recipes', path: '/MyRecipes' },
+    ]
+
     const baseURL = "http://localhost:3000/api/view/"
     const [recipeInfo, setRecipeInfo] = useState()
     const [loading, setLoading] = useState(true)

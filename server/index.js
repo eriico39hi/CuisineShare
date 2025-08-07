@@ -101,11 +101,23 @@ app.get("/api/allrecipes", async (req,res)=>{
 //Service get request for all recipes
 app.get("/api/view/:recipeID", async (req,res)=>{
 
-    const {recipeID} = req.params
+    
 
     try{
         const recipeInfo = await Recipes.findOne({_id:recipeID})
         return res.json({"recipeData":JSON.stringify(recipeInfo)})
+    }
+    catch(err){console.log(err)}
+})
+
+app.post("/api/addfavorite/", async (req,res)=>{
+
+    const {userID, recipeID} = req.body
+
+    try{
+        console.log(userID)
+        console.log(recipeID)
+        res.status(200)
     }
     catch(err){console.log(err)}
 })

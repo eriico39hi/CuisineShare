@@ -16,11 +16,11 @@ import Spinner from "react-bootstrap/esm/Spinner";
 
 function MyRecipes() {
 
-const navItems = [
-    { label: 'Home', path: '/' },
-    { label: 'All Recipes', path: '/BrowseRecipes' },
-    { label: 'Add Recipe', path: '/CreateRecipe' },
-    { label: 'My Recipes', path: '/MyRecipes' },
+    const navItems = [
+        { label: 'Home', path: '/' },
+        { label: 'All Recipes', path: '/BrowseRecipes' },
+        { label: 'Add Recipe', path: '/CreateRecipe' },
+        { label: 'My Recipes', path: '/MyRecipes' },
     ];
 
     const baseURL = "http://localhost:3000/api/myrecipes"

@@ -12,6 +12,8 @@ import Image from 'react-bootstrap/Image';
 import myImage from '../assets/image-not-found.jpg'
 import Spinner from "react-bootstrap/esm/Spinner";
 import { jwtDecode } from "jwt-decode"
+import Button from 'react-bootstrap/Button';
+
 
 
 function BrowseRecipes() {
@@ -23,7 +25,10 @@ function BrowseRecipes() {
   const isFetching = useRef(false)
   const navigate = useNavigate()
 
+
+
   const baseURL = "http://localhost:3000/api/allrecipes"
+  const faveURL = "http://localhost:3000/api/addfavorite"
  
   const navItems = [
     { label: 'Home', path: '/' },
@@ -67,14 +72,38 @@ function BrowseRecipes() {
   useEffect(()=>{
     //this useEffect can be helpful to log stuff after loading is complete
     console.log(loading)
-    console.log(localStorage.getItem("token"))
-    //localStorage.removeItem("token")
-    const token = localStorage.getItem("token")
-    if(localStorage.getItem("token") != null){
-      console.log(jwtDecode(token).user)
-   
-    }
   },[loading])
+
+  const onFavorite = async(e,recipeID)=>{
+
+    e.stopPropagation()
+
+    let userID
+    const token = localStorage.getItem("token")
+    console.log(token)
+    if(token && token != "undefined"){
+        userID = jwtDecode(token).id
+    }
+    console.log(userID)
+    console.log(recipeID)
+    console.log(faveURL)
+    try{
+      let response = await fetch(faveURL,{
+        method:"POST",
+        headers:{
+          "content-type":"application/json"
+        },
+        body:JSON.stringify({userID,recipeID})
+      })
+      await response.json()
+
+    }catch(err){console.log(err)}
+
+ 
+    console.log("fave clicked")
+
+    
+  }
 
 
    return (<>
@@ -129,8 +158,10 @@ function BrowseRecipes() {
             </Card.Subtitle>
             <Card.Text>
               Est. Time: {recipe.time || 'N/A'} <br />
-              Rating: {recipe.rating}
             </Card.Text>
+            <Button variant="danger" size="sm" onClick={(e) => onFavorite(e,recipe._id)}>
+              Favorite
+            </Button>
           </Card.Body>
         </Card>
       </Col>

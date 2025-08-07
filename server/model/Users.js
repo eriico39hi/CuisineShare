@@ -15,6 +15,10 @@ const usersSchema = mongoose.Schema({
         type:String,
         required:true
     },
+    favorites:{
+        type:Array,
+        required:false
+    },
 })
 
 const Users = mongoose.model('Users',usersSchema)
