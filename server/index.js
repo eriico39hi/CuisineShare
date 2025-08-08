@@ -72,16 +72,36 @@ app.get("/api/myrecipes", async (req,res)=>{
     const user = req.query.user
     const offset = parseInt(req.query.offset)
 
-    console.log(req.query)
-    console.log(user)
-    console.log(offset)
-
     const recipe = await Recipes.findOne({author:user}).skip(offset)
 
     if(!recipe){
         return res.status(404).json({error: 'No more recipes'})
     }
     res.json(recipe)
+
+})
+
+app.get("/api/favrecipes", async (req,res)=>{
+
+    const username = req.query.user
+    const offset = parseInt(req.query.offset)
+    console.log(offset)
+
+    const userData = await Users.findOne({username:username})
+    if(!userData){
+        return res.status(404).json({error: 'User not found'})
+    }
+
+    const favorites = userData.favorites
+    console.log(favorites)
+
+    if(!favorites || offset >= favorites.length){
+        return res.status(404).json({error: 'No more recipes'})
+    }
+
+    const recipe = await Recipes.findOne({_id:favorites[offset]})
+    return res.json(recipe)
+
 
 })
 
