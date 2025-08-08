@@ -25,6 +25,7 @@ function CreateRecipe() {
   const[fileType, setFileType] = useState('')
   const[fileString, setFileString] = useState('')
   const[file, setFile] = useState(null)
+  const [validated, setValidated] = useState(false)
  
 
   const onCancel = async (event) => {
@@ -86,29 +87,39 @@ function CreateRecipe() {
 
   const onSubmit = async (event) =>{
 
-    const image = fileString
-    let author = "Unknown"
-    const token = localStorage.getItem("token")
-    event.preventDefault();
-    console.log(jwtDecode(token).user)
+    const form = event.currentTarget;
+    console.log(form.checkValidity())
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    else {
+      setValidated(true);
 
-    if(token != null){
-      author = jwtDecode(token).user
+      const image = fileString
+      let author = "Unknown"
+      const token = localStorage.getItem("token")
+      event.preventDefault();
+      console.log(jwtDecode(token).user)
+
+      if(token != null){
+        author = jwtDecode(token).user
+      }
+      
+      try{
+        let response = await fetch(URL,{
+          method:"POST",
+          headers:{
+            "content-type":"application/json"
+          },
+          body:JSON.stringify({name,author,time,image,description,ingredients,instructions})
+        })
+        const data = await response.json()
+        console.log(data)
+        navigate(`/View/${data.id}`)
+      }
+      catch(err){console.log(err)}
     }
-    
-    try{
-      let response = await fetch(URL,{
-        method:"POST",
-        headers:{
-          "content-type":"application/json"
-        },
-        body:JSON.stringify({name,author,time,image,description,ingredients,instructions})
-      })
-      const data = await response.json()
-      console.log(data)
-      navigate(`/View/${data.id}`)
-    }
-    catch(err){console.log(err)}
   } 
 
   return (<>
@@ -120,7 +131,7 @@ function CreateRecipe() {
       </div>
     </Container>
     <Container className = "mt-3">
-     <Form onSubmit={onSubmit}>
+     <Form noValidate validated={validated} onSubmit={onSubmit}>
       <Row>
         <Col>
             <Image src={file||myImage} fluid className="border border-dark border-1 h-100"/>
@@ -128,32 +139,47 @@ function CreateRecipe() {
         <Col>
           <Form.Group className="mb-3" controlId="name">
             <Form.Label>Recipe Name</Form.Label>
-            <Form.Control 
+            <Form.Control
+              required
               type="text" 
               value={name}
               onChange={(e)=>setName(e.target.value)}
               placeholder="Enter Recipe Name"/>
+            <Form.Control.Feedback type="invalid">
+                Cannot be empty.
+            </Form.Control.Feedback>                   
           </Form.Group>
           <Form.Group className="mb-3" controlId="duration">
-          <Form.Label>Est. Time (min.)</Form.Label>
-          <Form.Control 
-            type="number" 
-            value={time}
-            onChange={(e)=>setTime(e.target.value)}
-            placeholder="Enter Recipe Time"/>
+            <Form.Label>Est. Time (min.)</Form.Label>
+            <Form.Control
+              required
+              type="number" 
+              value={time}
+              onChange={(e)=>setTime(e.target.value)}
+              placeholder="Enter Recipe Time in minutes"/>
+            <Form.Control.Feedback type="invalid">
+                Cannot be empty.
+            </Form.Control.Feedback>                 
           </Form.Group>
           <Form.Group className="mb-3" controlId="info">
-          <Form.Label>Description</Form.Label>
-          <Form.Control 
-            as="textarea"
-            rows={4} 
-            value={description}
-            onChange={(e)=>setDescription(e.target.value)}
-            placeholder="Enter Recipe Name"/>
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              required 
+              as="textarea"
+              rows={4} 
+              value={description}
+              onChange={(e)=>setDescription(e.target.value)}
+              placeholder="Enter Recipe Name"/>
+            <Form.Control.Feedback type="invalid">
+                Cannot be empty.
+            </Form.Control.Feedback>            
           </Form.Group>
             <Form.Group controlId="formFile" className="mb-3">
             <Form.Label>Recipe Image</Form.Label>
-            <Form.Control type="file" onChange={handleFileChange}/>
+            <Form.Control required type="file" onChange={handleFileChange}/>            
+            <Form.Control.Feedback type="invalid">
+              Cannot be empty.
+            </Form.Control.Feedback>     
           </Form.Group>
         </Col>
       </Row>
@@ -168,21 +194,25 @@ function CreateRecipe() {
           <Form.Group className="my-1" controlId="formIngredients" key={index}>
             <Row>
               <Col>
-                <Form.Control 
+                <Form.Control
+                  required 
                   type="text"
                   name="ingredient"
                   value={ingredient.ingredient}
                   onChange={(e) => handleChangeIngredInput(index, e)}
                   placeholder="Enter Ingredient"/>
-                </Col>
-                <Col>        
-                  <Button disabled={(index+1)<ingredients.length} className= "my-1 mx-2" variant="primary" type="button" onClick={() => handleAddIngred()}>
-                    +
-                  </Button>
-                  <Button disabled={index === 0 && ingredients.length===1} onClick={() => handleRemoveIngred(index)} >
-                    -
-                  </Button>
-                </Col>
+                <Form.Control.Feedback type="invalid">
+                    Cannot be empty.
+                </Form.Control.Feedback>                       
+              </Col>
+              <Col>        
+                <Button disabled={(index+1)<ingredients.length} className= "my-1 mx-2" variant="primary" type="button" onClick={() => handleAddIngred()}>
+                  +
+                </Button>
+                <Button disabled={index === 0 && ingredients.length===1} onClick={() => handleRemoveIngred(index)} >
+                  -
+                </Button>
+              </Col>
             </Row>
           </Form.Group>
         ))}
@@ -197,7 +227,8 @@ function CreateRecipe() {
           <Form.Group className="my-1" controlId="formIngredients" key={index}>
             <Row>
               <Col>
-                <Form.Control 
+                <Form.Control
+                  required 
                   type="text"
                   name="instruction"
                   value={instruction.instruction}
