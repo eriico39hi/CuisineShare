@@ -1,4 +1,11 @@
-//Includes
+/*
+*   index.js
+*
+*   The Back-End
+*   Handles all api calls from front end pages in client directory
+*   Interacts with MongoDB and uses Mongoose schema to store and retrieve data
+*/
+
 const express = require("express")
 const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
@@ -14,6 +21,8 @@ app.use(express.json({limit:'5mb'}))
 app.use(cors())
 
 //Service post request to register new account
+//Information contained in body of request is saved to MongoDB if that user doesn't already exist
+//Similar to Assignment 3 code but the JWT token is also signed with username
 app.post("/api/auth/register", async (req,res)=>{
     try{
         const {username, email, password} = req.body
@@ -30,7 +39,8 @@ app.post("/api/auth/register", async (req,res)=>{
     catch(err){console.log(err)}
 })
 
-//Service post request to login
+//Service post request to login verifies with password hash
+//Similar to Assignment 3 code but the JWT token is also signed with username
 app.post("/api/auth/login", async (req,res)=>{
     const {username, password} = req.body
 
@@ -48,6 +58,7 @@ app.post("/api/auth/login", async (req,res)=>{
 })
 
 //Service post request to submit new recipe to database
+//Information contained in body of request is saved to MongoDB if that recipe doesn't already exist
 app.post("/api/newrecipe", async (req,res)=>{
     const {name, author, time, image, description, ingredients, instructions} = req.body
     
@@ -66,7 +77,23 @@ app.post("/api/newrecipe", async (req,res)=>{
     catch(err){console.log(err)}    
 })
 
-//Service get request for my recipes
+//Service get request for all recipes
+//An offset is contained in the URL as a query "?offset=xx"
+//Recipes are fetched based on this offset, the offset is incremented at the front-end until a 404 is sent back here
+app.get("/api/allrecipes", async (req,res)=>{
+
+    const offset = parseInt(req.query.offset)
+    const recipe = await Recipes.findOne().skip(offset)
+
+    if(!recipe){
+        return res.status(404).json({error: 'No more recipes'})
+    }
+    res.json(recipe)
+
+})
+
+//Service get request for a users created recipes
+//Functions the same way as "allrecipes" but user is also part of the query and is filtered on
 app.get("/api/myrecipes", async (req,res)=>{
 
     const user = req.query.user
@@ -77,10 +104,14 @@ app.get("/api/myrecipes", async (req,res)=>{
     if(!recipe){
         return res.status(404).json({error: 'No more recipes'})
     }
-    res.json(recipe)
+    return res.json(recipe)
 
 })
 
+//Service get request for a users favorited recipes
+//Username and offset are part of the query like myrecipes
+//This function first queries the user for their array of favorites, then queries the recipes in that array
+//That array is indexed with the offset (instead of the findOne like the other similar endpoints)
 app.get("/api/favrecipes", async (req,res)=>{
 
     const username = req.query.user
@@ -105,24 +136,11 @@ app.get("/api/favrecipes", async (req,res)=>{
 
 })
 
-//Service get request for all recipes
-app.get("/api/allrecipes", async (req,res)=>{
-
-    const offset = parseInt(req.query.offset)
-    const recipe = await Recipes.findOne().skip(offset)
-
-    if(!recipe){
-        return res.status(404).json({error: 'No more recipes'})
-    }
-    res.json(recipe)
-
-})
-
-//Service get request for all recipes
+//Service get request for a single recipe
+//recipeID is in the URL, very simple endpoint that just returns all data for the recipe in the URL
 app.get("/api/view/:recipeID", async (req,res)=>{
 
     
-
     try{
         const recipeInfo = await Recipes.findOne({_id:recipeID})
         return res.json({"recipeData":JSON.stringify(recipeInfo)})
@@ -130,6 +148,9 @@ app.get("/api/view/:recipeID", async (req,res)=>{
     catch(err){console.log(err)}
 })
 
+//Service a POST request for adding a new favorite recipe
+//User and recipeID are in the body of the POST request
+//Users MongoDB entry is updated and a new ID is added to the array of favorites (recipeID)
 app.post("/api/addfavorite/", async (req,res)=>{
 
     const {userID, recipeID} = req.body

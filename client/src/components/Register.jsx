@@ -1,3 +1,10 @@
+/*
+*   Register.jsx
+*
+*   Page that allows you to register for a new account.
+*   Very similar to Assigment 3 code
+*/
+
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Form from 'react-bootstrap/Form';
@@ -17,7 +24,9 @@ function Register() {
 
   const navigate = useNavigate()
 
-  //submit handler
+  //this function fires when submit is clicked
+  //it hashes the password and sends the password hash to the back-end along with username and email
+  //These are used on the back-end to create a new user in the users MongoDB collection
   const onsubmit = async (event)=>{
 
     const form = event.currentTarget;
@@ -53,12 +62,13 @@ function Register() {
     } 
   }
 
-    const oncancel = async (event) => {
-          navigate(-1)
-    }
+  //Fires on cancel button click, navigates back a page.
+  const oncancel = async (event) => {
+        navigate(-1)
+  }
 
+  //The return page elements themselves. All bootstrap.
   return (<>
-
     <Navbar expand="lg" style={{ backgroundColor: '#74cbe0ff' }}>
       <Container>
         <Navbar.Brand className="fs-4 fw-bold" href="/Home">CuisineShare</Navbar.Brand>

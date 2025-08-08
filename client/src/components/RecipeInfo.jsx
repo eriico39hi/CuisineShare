@@ -1,3 +1,9 @@
+/*
+*   RecipeInfo.jsx
+*
+*   Page that shows detailed recipe info so you can make the recipe.
+*/
+
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Container from 'react-bootstrap/Container';
@@ -18,8 +24,8 @@ function RecipeInfo() {
     const [loading, setLoading] = useState(true)
     const {recipeID} = useParams()
 
-
-    
+    //This useEffect function loads the recipe itself
+    //The URL includes the recipe ID which is parsed out at the backend to retrieve the correct information
     useEffect(()=>{
 
         console.log(baseURL+recipeID)
@@ -39,15 +45,16 @@ function RecipeInfo() {
         loadRecipe()
     },[])
 
+    //this useEffect can be helpful to log stuff after loading is complete
+    //was used extensively during development troubleshooting to observe variables
+    //now that code is mostly working it could be removed
     useEffect(()=>{
-        //this useEffect can be helpful to log stuff after loading is complete
         console.log(loading)
         console.log(recipeInfo)
         console.log(recipeID)
     },[loading])
 
-
-
+    //The return page elements themselves. All bootstrap.
     return ( <>
         {loading?(
             <Spinner animation="border" role="status">

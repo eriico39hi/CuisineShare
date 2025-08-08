@@ -1,3 +1,10 @@
+/*
+*   BrowseRecipes.jsx
+*
+*   Page that allows you to browse all recipes stored in database by picture, title and author
+*   Has the additional feature of being able to favorite a recipe if you're logged in
+*/
+
 import { useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import Container from 'react-bootstrap/Container';
@@ -5,7 +12,6 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
-import myImage from '../assets/image-not-found.jpg'
 import Spinner from "react-bootstrap/esm/Spinner";
 import { jwtDecode } from "jwt-decode"
 import Button from 'react-bootstrap/Button';
@@ -23,6 +29,9 @@ function BrowseRecipes() {
   const baseURL = "http://localhost:3000/api/allrecipes"
   const faveURL = "http://localhost:3000/api/addfavorite"
 
+  //This use effect function is for populating the recipe cards
+  //Repeatedly sends get request to endpoint with new offset
+  //If the response is '404 no more recipes' loop will exit
   useEffect(()=>{    
     if (fetchedAll || isFetching.current) return
     if (offset !== recipes.length) return
@@ -55,11 +64,16 @@ function BrowseRecipes() {
     getRecipes()
   },[offset,fetchedAll,recipes.length])
   
+  //this useEffect can be helpful to log stuff after loading is complete
+  //was used extensively during development troubleshooting to observe variables
+  //now that code is mostly working it could be removed
   useEffect(()=>{
-    //this useEffect can be helpful to log stuff after loading is complete
     console.log(loading)
   },[loading])
 
+  //this function is used to add a new favorite to a user
+  //it triggers when the small Favorite button at the bottom of the card is clicked
+  //it sends a POST request to the endpoint which appends the new recipe to the users favorites array (in MongoDB)
   const onFavorite = async(e,recipeID)=>{
 
     e.stopPropagation()
@@ -88,12 +102,14 @@ function BrowseRecipes() {
     console.log("fave clicked")
   }
 
-   return (<>
-   {loading?(
-      <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-      </Spinner>):
-      (<>
+  //The return page elements themselves. All bootstrap.
+  //The cards are dynamically added inside a loop for each recipe in the recipes array using recipes.map
+  return (<>
+  {loading?(
+    <Spinner animation="border" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </Spinner>):
+    (<>
       <NavBar/>
       <Container>
         <div className="my-4 pb-2 border-bottom">
@@ -134,7 +150,6 @@ function BrowseRecipes() {
       ))}
     </Row>
   </Container>
-  
   </>)}
 </>)}
 

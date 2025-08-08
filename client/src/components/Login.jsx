@@ -1,3 +1,10 @@
+/*
+*   Login.jsx
+*
+*   Page that allows you to login to your account. Also has button to register for new account.
+*   Very similar to Assigment 3 code
+*/
+
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Form from 'react-bootstrap/Form';
@@ -18,7 +25,8 @@ function Login() {
   const navigate = useNavigate()
   
 
-  //submit handler
+  //This function fires when submit is clicked. It triggers the back-end to verify the user with its hashed password.
+  //It uses JWT for authentication. The token has been tweaked to also include username in its data for other parts of the webapp.
   const onsubmit = async (event)=>{
       
     const form = event.currentTarget;
@@ -31,32 +39,32 @@ function Login() {
       setValidated(true);
 
       try{
-          let response = await fetch(URL,{
-              method:"POST",
-              headers:{
-                  "content-type":"application/json"
-              },
-              body:JSON.stringify({username,password})
-          })
-            const data = await response.json()
-            const token = data.token
-            console.log(data)
-            if(response.ok && token){
-              localStorage.setItem("token",token)
-              navigate("/MyRecipes")
-            }
-            else{
-              alert(data.msg || "Login failed!")
-            }
+        let response = await fetch(URL,{
+          method:"POST",
+          headers:{
+             "content-type":"application/json"
+          },
+          body:JSON.stringify({username,password})
+        })
+        const data = await response.json()
+        const token = data.token
+        console.log(data)
+        if(response.ok && token){
+          localStorage.setItem("token",token)
+          navigate("/MyRecipes")
+        }
+        else{
+          alert(data.msg || "Login failed!")
+        }
       } 
       catch(err){
         console.log(err)
       }
-    }
-      
+    } 
   }
 
-
+  //The return page elements themselves. All bootstrap.
+  //A "register account" button is in here that just navigates to that page.
   return (<>
     <Navbar expand="lg" style={{ backgroundColor: '#74cbe0ff' }}>
       <Container>

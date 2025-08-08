@@ -1,3 +1,8 @@
+/*
+*   Welcome.jsx
+*
+*   Home page of the site. Has a fancy image background but basically just navigates to other parts of the site
+*/
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useNavigate } from "react-router-dom";
@@ -14,14 +19,15 @@ function Welcome() {
 
     const navigate = useNavigate()
 
+    //These functions all just navigate to various other pages
+    //If "AddRecipes" is clicked and the user isn't logged in it brings them to the login page
     const login = async (event) => {
         navigate("/Login")
     }
      const viewRecipe = async (event) => {
         navigate("/BrowseRecipes")
-    }
-        
-     const addRecipe = async (event) => {
+    }  
+    const addRecipe = async (event) => {
         if(localStorage.getItem("token") != null){
             navigate("/CreateRecipe")
         } else {
@@ -29,6 +35,7 @@ function Welcome() {
         }
     }
 
+    //The return page elements themselves. All bootstrap.
     return (
         <div className = "welcome-page">
             <Navbar expand="lg">

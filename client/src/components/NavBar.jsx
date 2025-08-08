@@ -1,3 +1,10 @@
+/*
+*   NavBar.jsx
+*
+*   Holds the NavBar shown on each page, collected here to save space on each page
+*   Dynamically changes depending on if the user is logged in, as verified by the existence of a JWT token
+*/
+
 import { useState, useEffect } from "react";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';

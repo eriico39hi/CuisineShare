@@ -1,3 +1,11 @@
+/*
+*   CreateRecipe.jsx
+*
+*   Page that allows you to create new recipe. Multiple form types are shown that are all stored in the 
+*   recipe database upon clicking submit.
+*/
+
+
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Container from 'react-bootstrap/Container';
@@ -21,8 +29,6 @@ function CreateRecipe() {
   const [ingredients, setIngredients] = useState([{ingredient: ""}])
   const [instructions, setInstructions] = useState([{instruction: ""}])
 
-  const[fileName, setFileName] = useState('')
-  const[fileType, setFileType] = useState('')
   const[fileString, setFileString] = useState('')
   const[file, setFile] = useState(null)
   const [validated, setValidated] = useState(false)
@@ -32,6 +38,10 @@ function CreateRecipe() {
         navigate(-1)
   }
 
+  //This function handles image selection.
+  //When the browse button is clicked on the page, a file browser pops up to select your image from your PC
+  //Upon selection, the image is converted into a base64 string using the FileReader class
+  //On submit, this string will be stored into MongoDB along with the other recipe data
   const handleFileChange = (e) => {
     const file = e.target.files[0]
     if(file){
@@ -39,8 +49,6 @@ function CreateRecipe() {
       setFileType(file.type)
       setFile(window.URL.createObjectURL(file));
       
-      
-      //put logic here to verify that filetype is an image
       const freader = new FileReader()
       freader.readAsDataURL(file)
       
@@ -52,39 +60,38 @@ function CreateRecipe() {
     }  
   }
 
+  //This set of functions handles adding and removing ingredient forms from the page as well as changing their values
   const handleAddIngred = () => {
     setIngredients([...ingredients, { ingredient: ''}])
   }
-
   const handleRemoveIngred = (index) => {
     const values = [...ingredients]
     values.splice(index, 1)
     setIngredients([...values])
   }
-
   const handleChangeIngredInput = (index, e) => {
     const values = [...ingredients]
     values[index]= e.target.value
     setIngredients(values)
   }
 
+  //This set of functions handles adding and removing instruction steps forms from the page as well as changing their values
   const handleAddInstr = () => {
     setInstructions([...instructions, {instruction: ''}])
   }
-
   const handleRemoveInstr = (index) => {
     const values = [...instructions]
     values.splice(index, 1)
     setInstructions([...values])
   }
-
   const handleChangeInstrInput = (index, e) => {
     const values = [...instructions]
     values[index] = e.target.value
     setInstructions(values)
   }
 
-
+  //This function fires when submit is clicked. It compiles the data from all fields on the page and sends to the back-end.
+  //The back-end will create a new recipe in MongoDB with all this information
   const onSubmit = async (event) =>{
 
     const form = event.currentTarget;
@@ -122,8 +129,8 @@ function CreateRecipe() {
     }
   } 
 
+  //The return page elements themselves. All bootstrap.
   return (<>
-
     <NavBar/>
     <Container>
       <div className="my-4 pb-2 border-bottom">
@@ -256,10 +263,7 @@ function CreateRecipe() {
       </Form>  
     </Container> 
         <hr/> 
-  
-
     </>);
-    
 }
 
 export default CreateRecipe;
