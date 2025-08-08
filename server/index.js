@@ -142,6 +142,7 @@ app.get("/api/view/:recipeID", async (req,res)=>{
 
     
     try{
+        const recipeID = req.params.recipeID
         const recipeInfo = await Recipes.findOne({_id:recipeID})
         return res.json({"recipeData":JSON.stringify(recipeInfo)})
     }
