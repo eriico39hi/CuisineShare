@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
@@ -11,15 +9,9 @@ import Image from 'react-bootstrap/Image';
 import myImage from '../assets/image-not-found.jpg'
 import ListGroup from 'react-bootstrap/ListGroup';
 import { useParams } from "react-router-dom";
+import NavBar from './NavBar.jsx';
 
 function RecipeInfo() {
-
-    const navItems = [
-        { label: 'Home', path: '/' },
-        { label: 'All Recipes', path: '/BrowseRecipes' },
-        { label: 'Add Recipe', path: '/CreateRecipe' },
-        { label: 'My Recipes', path: '/MyRecipes' },
-    ]
 
     const baseURL = "http://localhost:3000/api/view/"
     const [recipeInfo, setRecipeInfo] = useState()
@@ -62,21 +54,7 @@ function RecipeInfo() {
                 <span className="visually-hidden">Loading...</span>
             </Spinner>):
             (<>   
-            <Navbar expand="lg" style={{ backgroundColor: '#74cbe0ff' }}>
-            <Container>
-                <Navbar.Brand className="fs-4 fw-bold" href="/Home">CuisineShare</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ms-auto" >
-                    {navItems.map((item,index) => (
-                        <Nav.Link className="text-black"  key={index} href={item.path}>
-                        {item.label}
-                        </Nav.Link>
-                    ))}
-                    </Nav>
-                </Navbar.Collapse>            
-            </Container>
-            </Navbar>
+            <NavBar/>
             <Container className = "mt-5">
                 <Row>
                     <Col>

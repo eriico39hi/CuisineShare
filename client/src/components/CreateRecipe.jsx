@@ -1,15 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
-import myImage from '../assets/image-not-found.jpg'
-import { jwtDecode } from "jwt-decode"
+import myImage from '../assets/image-not-found.jpg';
+import { jwtDecode } from "jwt-decode";
+import NavBar from './NavBar.jsx';
 
 function CreateRecipe() {
   
@@ -21,19 +20,12 @@ function CreateRecipe() {
   const [description, setDescription] = useState("")
   const [ingredients, setIngredients] = useState([{ingredient: ""}])
   const [instructions, setInstructions] = useState([{instruction: ""}])
-  
 
   const[fileName, setFileName] = useState('')
   const[fileType, setFileType] = useState('')
   const[fileString, setFileString] = useState('')
   const[file, setFile] = useState(null)
  
-  const navItems = [
-    { label: 'Home', path: '/' },
-    { label: 'All Recipes', path: '/BrowseRecipes' },
-    { label: 'Add Recipe', path: '/CreateRecipe' },
-    { label: 'My Recipes', path: '/MyRecipes' },
-  ]
 
   const onCancel = async (event) => {
         navigate(-1)
@@ -55,48 +47,40 @@ function CreateRecipe() {
         console.log(freader.result)
         setFileString(freader.result)
       }
-      
       console.log(file)
-      
     }  
   }
 
   const handleAddIngred = () => {
     setIngredients([...ingredients, { ingredient: ''}])
-    console.log(ingredients)
   }
 
   const handleRemoveIngred = (index) => {
     const values = [...ingredients]
     values.splice(index, 1)
     setIngredients([...values])
-    console.log(ingredients)
   }
 
   const handleChangeIngredInput = (index, e) => {
     const values = [...ingredients]
     values[index]= e.target.value
     setIngredients(values)
-    console.log(ingredients)
   }
 
   const handleAddInstr = () => {
     setInstructions([...instructions, {instruction: ''}])
- 
   }
 
   const handleRemoveInstr = (index) => {
     const values = [...instructions]
     values.splice(index, 1)
     setInstructions([...values])
-
   }
 
   const handleChangeInstrInput = (index, e) => {
     const values = [...instructions]
     values[index] = e.target.value
     setInstructions(values)
-    console.log(instructions)
   }
 
 
@@ -120,33 +104,17 @@ function CreateRecipe() {
         },
         body:JSON.stringify({name,author,time,image,description,ingredients,instructions})
       })
-
       const data = await response.json()
       console.log(data)
       navigate(`/View/${data.id}`)
     }
-
     catch(err){console.log(err)}
   } 
 
   return (<>
 
-    <Navbar expand="lg" style={{ backgroundColor: '#74cbe0ff' }}>
-      <Container>
-        <Navbar.Brand className="fs-4 fw-bold" href="/Home">CuisineShare</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto" >
-              {navItems.map((item,index) => (
-                <Nav.Link className="text-black"  key={index} href={item.path}>
-                {item.label}
-                </Nav.Link>
-            ))}
-            </Nav>
-        </Navbar.Collapse>            
-      </Container>
-    </Navbar>
-     <Container>
+    <NavBar/>
+    <Container>
       <div className="my-4 pb-2 border-bottom">
         <h1>Create New Recipe</h1>
       </div>
@@ -158,36 +126,35 @@ function CreateRecipe() {
             <Image src={file||myImage} fluid className="border border-dark border-1 h-100"/>
         </Col>
         <Col>
-            <Form.Group className="mb-3" controlId="name">
-              <Form.Label>Recipe Name</Form.Label>
-              <Form.Control 
-                type="text" 
-                value={name}
-                onChange={(e)=>setName(e.target.value)}
-                placeholder="Enter Recipe Name"/>
-            </Form.Group>
-              <Form.Group className="mb-3" controlId="duration">
-                  <Form.Label>Est. Time (min.)</Form.Label>
-              <Form.Control 
-                type="number" 
-                value={time}
-                onChange={(e)=>setTime(e.target.value)}
-                placeholder="Enter Recipe Time"/>
-            </Form.Group>
-              <Form.Group className="mb-3" controlId="info">
-              <Form.Label>Description</Form.Label>
-              <Form.Control 
-                as="textarea"
-                rows={4} 
-                value={description}
-                onChange={(e)=>setDescription(e.target.value)}
-                placeholder="Enter Recipe Name"/>
-            </Form.Group>
-              <Form.Group controlId="formFile" className="mb-3">
-              <Form.Label>Recipe Image</Form.Label>
-              <Form.Control type="file" onChange={handleFileChange}/>
-           
-            </Form.Group>
+          <Form.Group className="mb-3" controlId="name">
+            <Form.Label>Recipe Name</Form.Label>
+            <Form.Control 
+              type="text" 
+              value={name}
+              onChange={(e)=>setName(e.target.value)}
+              placeholder="Enter Recipe Name"/>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="duration">
+          <Form.Label>Est. Time (min.)</Form.Label>
+          <Form.Control 
+            type="number" 
+            value={time}
+            onChange={(e)=>setTime(e.target.value)}
+            placeholder="Enter Recipe Time"/>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="info">
+          <Form.Label>Description</Form.Label>
+          <Form.Control 
+            as="textarea"
+            rows={4} 
+            value={description}
+            onChange={(e)=>setDescription(e.target.value)}
+            placeholder="Enter Recipe Name"/>
+          </Form.Group>
+            <Form.Group controlId="formFile" className="mb-3">
+            <Form.Label>Recipe Image</Form.Label>
+            <Form.Control type="file" onChange={handleFileChange}/>
+          </Form.Group>
         </Col>
       </Row>
       <hr/>
@@ -249,7 +216,6 @@ function CreateRecipe() {
           </Form.Group>
         ))}
       </Row>
-
       <Button className="mt-3 mx-4" variant="primary" type="button" onClick={onCancel}>
         Cancel
       </Button>
