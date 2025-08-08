@@ -49,7 +49,7 @@ function Register() {
         const token = data.token
         if(response.ok && token){
           localStorage.setItem("token",token)
-          navigate("/profile")
+          navigate("/myrecipes")
         }
         else{
           alert(data.msg || "Registration failed!")
