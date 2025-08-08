@@ -29,6 +29,8 @@ function BrowseRecipes() {
   const baseURL = "http://localhost:3000/api/allrecipes"
   const faveURL = "http://localhost:3000/api/addfavorite"
 
+  const token = localStorage.getItem("token")
+
   //This use effect function is for populating the recipe cards
   //Repeatedly sends get request to endpoint with new offset
   //If the response is '404 no more recipes' loop will exit
@@ -79,7 +81,7 @@ function BrowseRecipes() {
     e.stopPropagation()
 
     let userID
-    const token = localStorage.getItem("token")
+    
     console.log(token)
     if(token && token != "undefined"){
         userID = jwtDecode(token).id
@@ -141,9 +143,11 @@ function BrowseRecipes() {
               <Card.Text>
                 Est. Time: {recipe.time || 'N/A'} <br />
               </Card.Text>
+              {token &&
               <Button variant="danger" size="sm" onClick={(e) => onFavorite(e,recipe._id)}>
                 Favorite
               </Button>
+              }
             </Card.Body>
           </Card>
         </Col>
