@@ -45,8 +45,6 @@ function CreateRecipe() {
   const handleFileChange = (e) => {
     const file = e.target.files[0]
     if(file){
-      setFileName(file.name)
-      setFileType(file.type)
       setFile(window.URL.createObjectURL(file));
       
       const freader = new FileReader()
