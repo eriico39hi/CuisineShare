@@ -10,12 +10,11 @@ import { useState, useRef, useEffect } from "react";
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Card from 'react-bootstrap/Card';
-import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import { jwtDecode } from "jwt-decode"
 import Spinner from "react-bootstrap/esm/Spinner";
 import NavBar from './NavBar.jsx';
+import RecipeCard from './RecipeCard.jsx';
 
 function MyRecipes() {
 
@@ -36,7 +35,7 @@ function MyRecipes() {
     const navigate = useNavigate()
   
     //Fires with add recipe button click. Navigates to the page for adding a recipe.
-    const addRecipe = async (event) => {
+    const addRecipe = async () => {
         navigate("/CreateRecipe")
     }
 
@@ -118,6 +117,7 @@ function MyRecipes() {
 
         getFavRecipes()
     },[foffset,fetchedAllF,favRecipes.length])
+    
 
     //The return page elements themselves. All bootstrap.
     //The card mapping was borrowed from BrowseRecipes
@@ -147,27 +147,7 @@ function MyRecipes() {
             <Row>
                 {myRecipes.map((recipe, index) => (
                     <Col md={4} key={index} className="mb-4">
-                        <Card 
-                            className="border border-dark border-1 h-100"
-                            style={{cursor:'pointer'}}
-                            onClick={()=>navigate(`/View/${recipe._id}`)}
-                            role="button">
-                            <Card.Header>
-                                <Image src={recipe.image} fluid/>
-                            </Card.Header>
-                            <Card.Body>
-                                <Card.Title className="fs-4 mt-2 fw-bold">
-                                    {recipe.name || 'Unnamed Recipe'}
-                                </Card.Title>
-                                <Card.Subtitle className="mb-2 text-muted">
-                                    Uploaded by: {recipe.author || 'Unknown'}
-                                </Card.Subtitle>
-                                <Card.Text>
-                                    Est. Time: {recipe.time || 'N/A'} <br />
-                                    Rating: {recipe.rating}
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
+                        <RecipeCard recipe={recipe}/>
                     </Col>
                 ))}
             </Row>
@@ -183,27 +163,7 @@ function MyRecipes() {
             <Row>
                 {favRecipes.map((recipe, index) => (
                     <Col md={4} key={index} className="mb-4">
-                        <Card 
-                            className="border border-dark border-1 h-100"
-                            style={{cursor:'pointer'}}
-                            onClick={()=>navigate(`/View/${recipe._id}`)}
-                            role="button">
-                            <Card.Header>
-                                <Image src={recipe.image} fluid/>
-                            </Card.Header>
-                            <Card.Body>
-                                <Card.Title className="fs-4 mt-2 fw-bold">
-                                    {recipe.name || 'Unnamed Recipe'}
-                                </Card.Title>
-                                <Card.Subtitle className="mb-2 text-muted">
-                                    Uploaded by: {recipe.author || 'Unknown'}
-                                </Card.Subtitle>
-                                <Card.Text>
-                                    Est. Time: {recipe.time || 'N/A'} <br />
-                                    Rating: {recipe.rating}
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
+                       <RecipeCard recipe={recipe}/>
                     </Col>
                 ))}
             </Row>

@@ -97,11 +97,10 @@ function Login() {
                     required
                     type="password" 
                     value={password}
-                    minLength={6}
                     onChange={(e)=>setPassword(e.target.value)}
                     placeholder="Enter Password" />
                   <Form.Control.Feedback type="invalid">
-                     Must be at least 6 characters.
+                     Cannot be empty.
                   </Form.Control.Feedback>
                 </Form.Group>
               </Col>
