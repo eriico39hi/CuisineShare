@@ -124,8 +124,26 @@ function CreateRecipe() {
           body:JSON.stringify({name,author,time,image,description,ingredients,instructions})
         })
         const data = await response.json()
+
+        let found = false
+        for (let i = 0; i<15; i++){
+          const check = await fetch(`http://localhost:3000/api/view/${data.id}`)
+          if (check.ok) {
+            found = true
+            break
+          }
+          await new Promise(res => setTimeout(res, 500))
+        }
+
+        if (found){
+          await new Promise(res => setTimeout(res, 500))
+          navigate(`/View/${data.id}`)
+        } else {
+          console.log("Recipe not ready yet.")
+        }
+
         console.log(data)
-        navigate(`/View/${data.id}`)
+
       }
       catch(err){console.log(err)}
     }
