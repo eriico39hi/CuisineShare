@@ -5,17 +5,18 @@
 *   Dynamically changes depending on if the user is logged in, as verified by the existence of a JWT token
 */
 
-import { useState, useEffect } from "react";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 
+
 function NavBar() {
 
+    const token = localStorage.getItem("token")
+    console.log(token)
     let navItems = [];
 
-    const test = true;
-    if(test) {
+    if(token!=null) {
         navItems = [
             { label: 'Home', path: '/' },
             { label: 'All Recipes', path: '/BrowseRecipes' },
@@ -29,6 +30,10 @@ function NavBar() {
             { label: 'Login', path: '/Login' }];
     }
 
+    const logout = () => {
+        localStorage.removeItem("token");
+  };
+
     return (
         <Navbar expand="lg" style={{ backgroundColor: '#74cbe0ff' }}>
             <Container>
@@ -37,10 +42,15 @@ function NavBar() {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto" >
                         {navItems.map((item,index) => (
-                            <Nav.Link className="text-black"  key={index} href={item.path}>
+                            <Nav.Link className="text-black"  key={index}  href={item.path}>
                             {item.label}
                             </Nav.Link>
                         ))}
+                        {token &&
+                            <Nav.Link className="text-black" href={'/'} onClick={logout}>
+                                Logout
+                            </Nav.Link>
+                        }
                     </Nav>
                 </Navbar.Collapse>                            
             </Container>

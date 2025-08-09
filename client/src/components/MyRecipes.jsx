@@ -13,7 +13,6 @@ import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
-import myImage from '../assets/image-not-found.jpg'
 import { jwtDecode } from "jwt-decode"
 import Spinner from "react-bootstrap/esm/Spinner";
 import NavBar from './NavBar.jsx';
@@ -39,12 +38,6 @@ function MyRecipes() {
     //Fires with add recipe button click. Navigates to the page for adding a recipe.
     const addRecipe = async (event) => {
         navigate("/CreateRecipe")
-    }
-
-    //Logs the user out by deleting the JWT token from storage and navigating back to the home page.
-    const logout = async () => {
-        localStorage.removeItem("token")
-        navigate("/")
     }
 
     //This is one of 2 nearly identical useEffect functions
@@ -143,10 +136,6 @@ function MyRecipes() {
         <Container className="d-flex justify-content-end">
             <Button variant="primary" type="button" onClick={addRecipe}>
                 Add New Recipe
-            </Button>
-            &nbsp;
-            <Button variant="primary" type="button" onClick={logout}>
-                Logout
             </Button>
         </Container>    
         <Container>
