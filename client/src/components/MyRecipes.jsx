@@ -5,16 +5,14 @@
 *   Displays cards for recipes you've made and your favorite recipes, keyed off the JWT token in localStorage.
 */
 
+import { Container, Col, Row, Button, Spinner } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button';
 import { jwtDecode } from "jwt-decode"
-import Spinner from "react-bootstrap/esm/Spinner";
 import NavBar from './NavBar.jsx';
+import Footer from './Footer.jsx';
 import RecipeCard from './RecipeCard.jsx';
+import './Style.css'
 
 function MyRecipes() {
 
@@ -76,6 +74,7 @@ function MyRecipes() {
         }
 
         getMyRecipes()
+        console.log(myRecipes)
     },[offset,fetchedAll,myRecipes.length])
 
 
@@ -116,6 +115,7 @@ function MyRecipes() {
         }
 
         getFavRecipes()
+        console.log(favRecipes)
     },[foffset,fetchedAllF,favRecipes.length])
     
 
@@ -123,12 +123,14 @@ function MyRecipes() {
     //The card mapping was borrowed from BrowseRecipes
     return(<>
     {(loading&&loadingF)?(
-      <Spinner animation="border" role="status">
+      <Container className=" d-flex justify-content-center align-items-center min-vh-100">
+        <Spinner animation="border" role="status">
           <span className="visually-hidden">Loading...</span>
-      </Spinner>):
-      (<>
+        </Spinner>
+      </Container>):
+      (<div className="page-background d-flex flex-column min-vh-100">
         <NavBar/>
-        <Container>
+        <Container className="flex-grow-1 mt-3" >
             <div className="my-4 border-bottom">
              <h1> Welcome, {username}</h1>
             </div>
@@ -140,13 +142,13 @@ function MyRecipes() {
         </Container>    
         <Container>
             <div className="my-4 border-bottom">
-                <h2>My Recipes</h2>
+                <h2><u>My Recipes</u></h2>
             </div>
         </Container>
         <Container className="mt-5">
             <Row>
                 {myRecipes.map((recipe, index) => (
-                    <Col md={4} key={index} className="mb-4">
+                    <Col md={4} key={index} className="mb-4 ">
                         <RecipeCard recipe={recipe}/>
                     </Col>
                 ))}
@@ -156,11 +158,11 @@ function MyRecipes() {
         <hr/> 
         <Container>
             <div className="my-4 border-bottom">
-                <h2>Favorited Recipes</h2>
+                <h2><u>Favorited Recipes</u></h2>
             </div>
         </Container>            
         <Container className="mt-5">
-            <Row>
+            <Row className="scrollable-content">
                 {favRecipes.map((recipe, index) => (
                     <Col md={4} key={index} className="mb-4">
                        <RecipeCard recipe={recipe}/>
@@ -168,7 +170,9 @@ function MyRecipes() {
                 ))}
             </Row>
         </Container>
-    </>)}
+        <br/><br/><br/><br/><br/>
+        <Footer/>
+    </div>)}
 </>)}
 
 export default MyRecipes;

@@ -4,18 +4,12 @@
 *   Page that shows detailed recipe info so you can make the recipe.
 */
 
-import { useNavigate } from "react-router-dom";
+import { Container, ListGroup, Col, Row, Card, Image, Spinner } from 'react-bootstrap';
 import { useState, useEffect } from "react";
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Card from 'react-bootstrap/Card';
-import Spinner from 'react-bootstrap/Spinner';
-import Image from 'react-bootstrap/Image';
-import myImage from '../assets/image-not-found.jpg'
-import ListGroup from 'react-bootstrap/ListGroup';
 import { useParams } from "react-router-dom";
 import NavBar from './NavBar.jsx';
+import Footer from './Footer.jsx';
+import './Style.css';
 
 function RecipeInfo() {
 
@@ -57,12 +51,14 @@ function RecipeInfo() {
     //The return page elements themselves. All bootstrap.
     return ( <>
         {loading?(
-            <Spinner animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-            </Spinner>):
-            (<>   
+            <Container className="d-flex justify-content-center align-items-center min-vh-100">
+                <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </Spinner>
+             </Container>):
+            (<div className="d-flex flex-column min-vh-100">   
             <NavBar/>
-            <Container className = "mt-5">
+            <Container className="flex-grow-1 mt-5" >
                 <Row>
                     <Col>
                     <Image src={recipeInfo.image} fluid width="90%"/>
@@ -72,23 +68,23 @@ function RecipeInfo() {
                         <Card.Title className="fs-1 fw-bold">{recipeInfo.name}</Card.Title>
                         <Card.Subtitle>Uploaded: {recipeInfo.author}</Card.Subtitle>
                         <Card.Body className = "border"></Card.Body>
-                        <Card.Text className="mx-4">
+                        <Card.Text className="mx-2">
                             Est. Time: {recipeInfo.time}<br/>
                             Rating <br/>
                             <br/><br/>
-                            <u>{recipeInfo.description}</u><br/>
+                            <u>Description</u><br/>
+                            {recipeInfo.description}
                             <br/><br/>
                         </Card.Text>
                         </Card>
                     </Col>
                 </Row>  
-                <hr/> 
-                
+                <hr className="line"/> 
                 <Row>
                 <div className="my-1">
                     <h2>Ingredients</h2>
                 </div>
-                    <ListGroup className="py-0">
+                    <ListGroup numbered className="py-0">
                         {recipeInfo.ingredients.map((item,index) => (
                         <ListGroup.Item className="py-0" key={index}>
                             {item}
@@ -96,7 +92,7 @@ function RecipeInfo() {
                         ))}
                     </ListGroup>
                 </Row>
-                 <hr/> 
+                 <hr className="line"/> 
                 <Row>
                     <div className="my-1">
                         <h2>Instructions</h2>
@@ -109,11 +105,12 @@ function RecipeInfo() {
                         ))}
                     </ListGroup>
                 </Row>
-            <hr/> 
+            <hr className="line"/> 
             </Container>
-        </>)}  
-    </>)
-        
+            <br/><br/><br/><br/><br/>
+            <Footer/>
+        </div>)}  
+    </>)     
 }
 
 export default RecipeInfo;

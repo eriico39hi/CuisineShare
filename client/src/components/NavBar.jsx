@@ -5,15 +5,13 @@
 *   Dynamically changes depending on if the user is logged in, as verified by the existence of a JWT token
 */
 
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import Container from 'react-bootstrap/Container';
+import { Container, Navbar, Nav } from 'react-bootstrap';
+import './Style.css'
 
 
 function NavBar() {
 
     const token = localStorage.getItem("token")
-    console.log(token)
     let navItems = [];
 
     if(token!=null) {
@@ -22,7 +20,8 @@ function NavBar() {
             { label: 'All Recipes', path: '/BrowseRecipes' },
             { label: 'Add Recipe', path: '/CreateRecipe' },
             { label: 'My Recipes', path: '/MyRecipes' },
-    ]; }
+         ]; 
+    }
     else {
         navItems = [
             { label: 'Home', path: '/' },
@@ -35,7 +34,7 @@ function NavBar() {
   };
 
     return (
-        <Navbar expand="lg" style={{ backgroundColor: '#74cbe0ff' }}>
+        <Navbar expand="lg" className='nav-background'>
             <Container>
                 <Navbar.Brand className="fs-4 fw-bold" href="/Home">CuisineShare</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

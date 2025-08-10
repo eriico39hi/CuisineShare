@@ -6,17 +6,14 @@
 */
 
 
+import { Container, Form, Col, Row, Image, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Image from 'react-bootstrap/Image';
-import Button from 'react-bootstrap/Button';
-import myImage from '../assets/image-not-found.jpg';
 import { jwtDecode } from "jwt-decode";
+import myImage from '../assets/image-not-found.jpg';
 import NavBar from './NavBar.jsx';
+import Footer from './Footer.jsx';
+import './Style.css';
 
 function CreateRecipe() {
   
@@ -150,140 +147,149 @@ function CreateRecipe() {
   } 
 
   //The return page elements themselves. All bootstrap.
-  return (<>
-    <NavBar/>
-    <Container>
-      <div className="my-4 pb-2 border-bottom">
-        <h1>Create New Recipe</h1>
-      </div>
-    </Container>
-    <Container className = "mt-3">
-     <Form noValidate validated={validated} onSubmit={onSubmit}>
-      <Row>
-        <Col>
-            <Image src={file||myImage} fluid className="border border-dark border-1 h-100"/>
-        </Col>
-        <Col>
-          <Form.Group className="mb-3" controlId="name">
-            <Form.Label>Recipe Name</Form.Label>
-            <Form.Control
-              required
-              type="text" 
-              value={name}
-              onChange={(e)=>setName(e.target.value)}
-              placeholder="Enter Recipe Name"/>
-            <Form.Control.Feedback type="invalid">
-                Cannot be empty.
-            </Form.Control.Feedback>                   
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="duration">
-            <Form.Label>Est. Time (min.)</Form.Label>
-            <Form.Control
-              required
-              type="number" 
-              value={time}
-              onChange={(e)=>setTime(e.target.value)}
-              placeholder="Enter Recipe Time in minutes"/>
-            <Form.Control.Feedback type="invalid">
-                Cannot be empty.
-            </Form.Control.Feedback>                 
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="info">
-            <Form.Label>Description</Form.Label>
-            <Form.Control
-              required 
-              as="textarea"
-              rows={4} 
-              value={description}
-              onChange={(e)=>setDescription(e.target.value)}
-              placeholder="Enter Recipe Name"/>
-            <Form.Control.Feedback type="invalid">
-                Cannot be empty.
-            </Form.Control.Feedback>            
-          </Form.Group>
-            <Form.Group controlId="formFile" className="mb-3">
-            <Form.Label>Recipe Image</Form.Label>
-            <Form.Control required type="file" onChange={handleFileChange}/>            
-            <Form.Control.Feedback type="invalid">
-              Cannot be empty.
-            </Form.Control.Feedback>     
-          </Form.Group>
-        </Col>
-      </Row>
-      <hr/>
-      <Container>
-        <div className="my-4 border-bottom">
-            <h2>Ingredients</h2>
-        </div>
-      </Container>      
-      <Row>
-        {ingredients.map((ingredient,index) => (
-          <Form.Group className="my-1" controlId="formIngredients" key={index}>
-            <Row>
-              <Col>
+  return (
+    <div className="page-background d-flex flex-column min-vh-100 text-black">
+      <NavBar/>
+      <Container className="flex-grow-1 mt-3">
+        <Form noValidate validated={validated} onSubmit={onSubmit}>
+          <Row>
+            <div className="my-4 pb-2 border-bottom">
+              <h1>Create New Recipe</h1>
+            </div>
+          </Row>
+          <Row>
+            <Col>
+                <Image src={file||myImage} fluid className="border border-dark border-1 h-100"/>
+            </Col>
+            <Col>
+              <Form.Group className=" mb-3" controlId="name">
+                <Form.Label>Recipe Name</Form.Label>
                 <Form.Control
-                  required 
-                  type="text"
-                  name="ingredient"
-                  value={ingredient.ingredient}
-                  onChange={(e) => handleChangeIngredInput(index, e)}
-                  placeholder="Enter Ingredient"/>
+                  required
+                  className='border border-dark border-1'
+                  type="text" 
+                  value={name}
+                  onChange={(e)=>setName(e.target.value)}
+                  placeholder="Enter Recipe Name"/>
                 <Form.Control.Feedback type="invalid">
                     Cannot be empty.
-                </Form.Control.Feedback>                       
-              </Col>
-              <Col>        
-                <Button disabled={(index+1)<ingredients.length} className= "my-1 mx-2" variant="primary" type="button" onClick={() => handleAddIngred()}>
-                  +
-                </Button>
-                <Button disabled={index === 0 && ingredients.length===1} onClick={() => handleRemoveIngred(index)} >
-                  -
-                </Button>
-              </Col>
-            </Row>
-          </Form.Group>
-        ))}
-      </Row>
-      <Container>
-        <div className="my-4 border-bottom">
-            <h2>Instructions</h2>
-        </div>
-      </Container>
-      <Row>
-        {instructions.map((instruction,index) => (
-          <Form.Group className="my-1" controlId="formIngredients" key={index}>
-            <Row>
-              <Col>
+                </Form.Control.Feedback>                   
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="duration">
+                <Form.Label>Est. Time (min.)</Form.Label>
                 <Form.Control
-                  required 
-                  type="text"
-                  name="instruction"
-                  value={instruction.instruction}
-                  onChange={(e) => handleChangeInstrInput(index, e)}
-                  placeholder="Add Step"/>
-                </Col>
-                <Col>        
-                  <Button disabled={(index+1)<instructions.length} className = "my-1 mx-2" variant="primary" type="button" onClick={() => handleAddInstr()}>
-                    +
-                  </Button>
-                  <Button disabled={index === 0 && instructions.length===1} onClick={() => handleRemoveInstr(index)} >
-                    -
-                  </Button>
-                </Col>
-            </Row>
-          </Form.Group>
-        ))}
-      </Row>
-      <Button className="mt-3 mx-4" variant="primary" type="button" onClick={onCancel}>
-        Cancel
-      </Button>
-      <Button className="mt-3" variant="primary" type="button" onClick={onSubmit}>
-        Submit
-      </Button> 
-      </Form>  
-    </Container> 
-        <hr/> 
-    </>);
+                  required
+                  className='border border-dark border-1'
+                  type="number" 
+                  value={time}
+                  onChange={(e)=>setTime(e.target.value)}
+                  placeholder="Enter Recipe Time in minutes"/>
+                <Form.Control.Feedback type="invalid">
+                    Cannot be empty.
+                </Form.Control.Feedback>                 
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="info">
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  required
+                  className='border border-dark border-1'
+                  as="textarea"
+                  rows={4} 
+                  value={description}
+                  onChange={(e)=>setDescription(e.target.value)}
+                  placeholder="Add a decription"/>
+                <Form.Control.Feedback type="invalid">
+                    Cannot be empty.
+                </Form.Control.Feedback>            
+              </Form.Group>
+                <Form.Group controlId="formFile" className="mb-3">
+                <Form.Label>Recipe Image</Form.Label>
+                <Form.Control required className='border border-dark border-1' type="file" onChange={handleFileChange}/>            
+                <Form.Control.Feedback type="invalid">
+                  Cannot be empty.
+                </Form.Control.Feedback>     
+              </Form.Group>
+            </Col>
+          </Row>
+          <hr/>
+          <Row>
+            <div className="my-4 border-bottom">
+                <h2>Ingredients</h2>
+            </div>
+          </Row>  
+          <Row>
+            {ingredients.map((ingredient,index) => (
+              <Form.Group className="my-1" controlId="formIngredients" key={index}>
+                <Row>
+                  <Col>
+                    <Form.Control
+                      required
+                      className='border border-dark border-1'
+                      type="text"
+                      name="ingredient"
+                      value={ingredient.ingredient}
+                      onChange={(e) => handleChangeIngredInput(index, e)}
+                      placeholder="Enter Ingredient"/>
+                    <Form.Control.Feedback type="invalid">
+                        Cannot be empty.
+                    </Form.Control.Feedback>                       
+                  </Col>
+                  <Col>        
+                    <Button disabled={(index+1)<ingredients.length} className= "my-1 mx-2" variant="primary" type="button" onClick={() => handleAddIngred()}>
+                      +
+                    </Button>
+                    {/*Currently has bug where removing middle elements works but the UI display incorrectly
+                    Only allowing for last element removal for now*/}
+                    <Button disabled={(index === 0 && ingredients.length===1)||(index+1)<ingredients.length} variant="danger" onClick={() => handleRemoveIngred(index)} > 
+                      -
+                    </Button>
+                  </Col>
+                </Row>
+              </Form.Group>
+            ))}
+          </Row>
+          <Container>
+            <div className="my-4 border-bottom">
+                <h2>Instructions</h2>
+            </div>
+          </Container>
+          <Row>
+            {instructions.map((instruction,index) => (
+              <Form.Group className="my-1" controlId="formIngredients" key={index}>
+                <Row>
+                  <Col>
+                    <Form.Control
+                      required
+                      className='border border-dark border-1' 
+                      type="text"
+                      name="instruction"
+                      value={instruction.instruction}
+                      onChange={(e) => handleChangeInstrInput(index, e)}
+                      placeholder="Add Step"/>
+                    </Col>
+                    <Col>        
+                      <Button disabled={(index+1)<instructions.length} className = "my-1 mx-2" variant="primary" type="button" onClick={() => handleAddInstr()}>
+                        +
+                      </Button>
+                      <Button disabled={(index === 0 && instructions.length===1)||(index+1)<instructions.length} variant="danger" onClick={() => handleRemoveInstr(index)} >
+                        -
+                      </Button>
+                    </Col>
+                </Row>
+              </Form.Group>
+            ))}
+          </Row>
+          <Button className="mt-3 mx-4 btn-outline-primary" variant="secondary" type="button" onClick={onCancel}>
+            Cancel
+          </Button>
+          <Button className="mt-3 mx-3" variant="primary" type="button" onClick={onSubmit}>
+            Submit
+          </Button> 
+        </Form>  
+      </Container>
+    <br/><br/><br/><br/><br/>
+    <Footer/> 
+  </div>);
 }
 
 export default CreateRecipe;

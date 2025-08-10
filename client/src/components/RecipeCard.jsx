@@ -1,7 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import Image from 'react-bootstrap/Image';
+import { Card, Button, Image } from 'react-bootstrap';
 import { jwtDecode } from "jwt-decode"
 
 function RecipeCard ({recipe}) {
@@ -56,7 +54,7 @@ function RecipeCard ({recipe}) {
                 <Image src={recipe.image} fluid/>
             </Card.Header>
             <Card.Body>
-                <Card.Title className="fs-4 mt-2 fw-bold">
+                <Card.Title className="fs-3 mt-2 fw-bold">
                 {recipe.name || 'Unnamed Recipe'}
                 </Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">

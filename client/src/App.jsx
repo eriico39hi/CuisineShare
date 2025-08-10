@@ -4,7 +4,7 @@
 *   Main router for the whole site
 */
 
-import {BrowserRouter, Routes, Route} from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Welcome from './components/Welcome'
 import Register from './components/Register'
 import Login from './components/Login'
