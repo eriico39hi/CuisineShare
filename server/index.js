@@ -158,7 +158,7 @@ app.post("/api/addfavorite/", async (req,res)=>{
 
     try{
         await Users.updateOne({_id:userID},{$addToSet:{favorites:recipeID}})
-        res.status(200).send()
+        return res.status(200).json({success: true, message: 'Favorite Successful'})
     }
     catch(err){console.log(err)}
 })

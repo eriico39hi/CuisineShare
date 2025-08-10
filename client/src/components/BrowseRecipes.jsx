@@ -2,7 +2,7 @@
 *   BrowseRecipes.jsx
 *
 *   Page that allows you to browse all recipes stored in database by picture, title and author
-*   Has the additional feature of being able to favorite a recipe if you're logged in
+*   Has the additional feature of being able to favorite a recipe if you're logged in (this function is actually contained in "RecipeCard" now but called to this page)
 */
 
 import { useState, useRef, useEffect } from "react";
@@ -10,6 +10,8 @@ import { Container, Col, Row, Spinner } from 'react-bootstrap';
 import NavBar from './NavBar.jsx';
 import Footer from './Footer.jsx';
 import RecipeCard from './RecipeCard.jsx';
+import Toast from 'react-bootstrap/Toast';
+import ToastContainer from 'react-bootstrap/ToastContainer';
 
 function BrowseRecipes() {
 
@@ -17,7 +19,9 @@ function BrowseRecipes() {
   const [loading, setLoading] = useState(true)
   const [fetchedAll, setFetchedAll] = useState(false)
   const [offset, setOffset] = useState(0)
+  const [showToast, setShowToast] = useState(false)
   const isFetching = useRef(false)
+  const [toastMsg, setToastMsg] = useState("")
 
   const baseURL = "http://localhost:3000/api/allrecipes"
 
@@ -64,10 +68,38 @@ function BrowseRecipes() {
     console.log(loading)
   },[loading])
 
-  
+  const handleFavoriteSuccess = (recipeName) => {
+    setToastMsg("Favorite Success!")
+    setShowToast(true)
+  }
+
+  const handleFavoriteError = () => {
+    setToastMsg("Favorite failed!")
+    setShowToast(true)
+  }
+
+
   //The return page elements themselves. All bootstrap.
   //The cards are dynamically added inside a loop for each recipe in the recipes array using recipes.map
   return (<>
+  
+    <ToastContainer position="top-end" className="p-3" style={{ zIndex: 9999, position: "fixed", top: 10, right: 10 }}>
+      <Toast 
+          show={showToast} 
+          onClose={() => setShowToast(false)} 
+          delay={4000} 
+          autohide>
+          <Toast.Header>
+          <img
+              src="holder.js/20x20?text=%20"
+              className="rounded me-2"
+              alt=""
+          />
+          <strong className="me-auto">{toastMsg}</strong>
+          </Toast.Header>
+      </Toast>
+  </ToastContainer>
+
     {loading?(
       <Container className="d-flex justify-content-center align-items-center min-vh-100">
         <Spinner animation="border" role="status">
@@ -83,7 +115,11 @@ function BrowseRecipes() {
           <Row> 
             {recipes.map((recipe, index) => (
               <Col md={4} key={index} className="mb-4">
-              <RecipeCard recipe={recipe}/>
+              <RecipeCard 
+                recipe={recipe}
+                onFavoriteSuccess={handleFavoriteSuccess}
+                onFavoriteError={handleFavoriteError}
+                />
             </Col>
             ))}
          </Row>

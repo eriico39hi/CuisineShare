@@ -1,8 +1,15 @@
+/*
+*   RecipeCard.jsx
+*
+*   Holds the recipe card used in browserecipes and myrecipes pages
+*   Also contains the onfavorite link to backend which will only show up on the allrecipes page when logged in
+*/
+
 import { useNavigate, useLocation } from "react-router-dom";
 import { Card, Button, Image } from 'react-bootstrap';
 import { jwtDecode } from "jwt-decode"
 
-function RecipeCard ({recipe}) {
+function RecipeCard ({recipe, onFavoriteSuccess, onFavoriteError}) {
     
     
     const navigate = useNavigate()
@@ -11,7 +18,7 @@ function RecipeCard ({recipe}) {
     
     const faveURL = "http://localhost:3000/api/addfavorite"
 
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token")
 
     //this function is used to add a new favorite to a user
     //it triggers when the small Favorite button at the bottom of the card is clicked
@@ -38,13 +45,18 @@ function RecipeCard ({recipe}) {
             body:JSON.stringify({userID,recipeID})
         })
         await response.json()
-
-        }catch(err){console.log(err)}
+        onFavoriteSuccess()
+        }catch(err){
+            console.log(err)
+            onFavoriteError()
+        }
 
         console.log("fave clicked")
     }
 
     return (
+
+        
         <Card 
             className="border border-dark border-1 h-100"
             style={{cursor:'pointer'}}
