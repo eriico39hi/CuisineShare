@@ -9,7 +9,7 @@ const recipeSchema = mongoose.Schema({
     author:{
         type:String,
         required:true,
-        unique:true
+        unique:false
     },
     time:{
         type:Number,

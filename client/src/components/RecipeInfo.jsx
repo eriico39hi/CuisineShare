@@ -143,7 +143,6 @@ function RecipeInfo() {
                         <Card.Body className = "border"></Card.Body>
                         <Card.Text className="mx-2">
                             Est. Time: {recipeInfo.time}<br/>
-                            Rating <br/>
                             <br/><br/>
                             <u>Description</u><br/>
                             {recipeInfo.description}
