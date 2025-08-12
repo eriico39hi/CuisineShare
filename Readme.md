@@ -1,4 +1,29 @@
 # App Description
+CuisineShare is a recipe app created by Eric Craaybeek and Huan Ngo that allows users to share their favorite recipes with other fellow home cooks and food enthusiasts. Through the app, users are not only able to view recipes created by other users but can also upload and share their own recipes. Additionally, the app allows users to "favorite" any recipe they wish to bookmark to their account and quickly access in the future. 
+
+
+## Technologies and Libraries
+
+CuisineShare is full stack application developed using the MERN stack (MongoDB, Express.js, ReactJS, Node.js) and includes JWT for authentication. The core technologies, frameworks, and libraries for this project include:
+
+- Frontend: ReactJS, React-Bootstrap for UI, Vite
+- Backend: Express, Node.js, CORS, MongoDB, Mongoose
+- Auth: JWT (JSON Web Token), bcrypt
+- Tooling: dotenv and GitHub
+
+
+# API Endpoints
+
+| Method | Route                    | Description                                   |
+|--------|--------------------------|-----------------------------------------------|           
+| POST   | /api/auth/register       | Register a new user                           |
+| POST   | /api/auth/login          | Log in and receive JWT                        |
+| POST   | /api/newrecipe           | Create and submit new recipe                  |
+| GET    | /api/allrecipes          | Get all recipes from mongoDB                  |
+| GET    | /api/myrecipes           | Get user's created recipes                    |
+| GET    | /api/favrecipes          | Get user's favorited recipes                  |
+| GET    | /api/view/:recipeID      | Get all data for a single recipe              |
+| POST   | /api/addfavorite         | Adds recipe ID to favorites array in user DB  |
 
 
 # Setup Instructions
@@ -44,17 +69,3 @@ Open a second terminal and run the code below to start the client.
 You should see a similar link (See below) on the terminal to view the site. Ctrl+LeftClick the link to visit and view the web application
 [http://localhost:5173](http://localhost:5173)
 
-
-
-# API Endpoints
-
-| Method | Route                    | Description                                   |
-|--------|--------------------------|-----------------------------------------------|           
-| POST   | /api/auth/register       | Register a new user                           |
-| POST   | /api/auth/login          | Log in and receive JWT                        |
-| POST   | /api/newrecipe           | Create and submit new recipe                  |
-| GET    | /api/allrecipes          | Get all recipes from mongoDB                  |
-| GET    | /api/myrecipes           | Get user's created recipes                    |
-| GET    | /api/favrecipes          | Get user's favorited recipes                  |
-| GET    | /api/view/:recipeID      | Get all data for a single recipe              |
-| POST   | /api/addfavorite         | Adds recipe ID to favorites array in user DB  |

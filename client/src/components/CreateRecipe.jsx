@@ -238,7 +238,7 @@ function CreateRecipe() {
                     <Button disabled={(index+1)<ingredients.length} className= "my-1 mx-2" variant="primary" type="button" onClick={() => handleAddIngred()}>
                       +
                     </Button>
-                    {/*Currently has bug where removing middle elements works but the UI display incorrectly
+                    {/*Currently has bug where removing middle elements works but the UI display incorrectly. Likely a React issue with keys when items are removed.
                     Only allowing for last element removal for now*/}
                     <Button disabled={(index === 0 && ingredients.length===1)||(index+1)<ingredients.length} variant="danger" onClick={() => handleRemoveIngred(index)} > 
                       -

@@ -121,11 +121,9 @@ function RecipeInfo() {
                 <Row>
                     <Col>
                     <Image src={recipeInfo.image} fluid width="90%"/>
-                    
                     </Col>
                     <Col>
                     <Card className = "border border-dark">
-
                         <Row>
                             <Col>
                                 <Card.Title className="fs-1 fw-bold">{recipeInfo.name}</Card.Title>
@@ -133,16 +131,15 @@ function RecipeInfo() {
                             <Col>
                             {token && 
                                 <Button variant="danger" size="sm" onClick={(e) => onFavorite(e,recipeID)}>
-                                Favorite
+                                    Favorite
                                 </Button>
                             }
                             </Col>
                         </Row>
-
                         <Card.Subtitle>Uploaded: {recipeInfo.author}</Card.Subtitle>
                         <Card.Body className = "border"></Card.Body>
                         <Card.Text className="mx-2">
-                            Est. Time: {recipeInfo.time}<br/>
+                            Est. Time: {recipeInfo.time} min.<br/>
                             <br/><br/>
                             <u>Description</u><br/>
                             {recipeInfo.description}
