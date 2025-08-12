@@ -1,16 +1,18 @@
 # App Description
-CuisineShare is a recipe app created by Eric Craaybeek and Huan Ngo that allows users to share their favorite recipes with other fellow home cooks and food enthusiasts. Through the app, users are not only able to view recipes created by other users but can also upload and share their own recipes. Additionally, the app allows users to "favorite" any recipe they wish to bookmark to their account and quickly access in the future. 
+CuisineShare is a recipe app created by Eric Craaybeek and Huan Ngo that allows users to share their favorite recipes with other fellow home cooks and food enthusiasts. 
+Through the app, users are not only able to view recipes created by other users but can also upload and share their own recipes. 
+Recipes are saved with their ingredients, cooking time , description, instruction steps as well as a photo that gets saved with the recipe.
+Additionally, the app allows users to "favorite" any recipe they wish to bookmark to their account and quickly access in the future.
 
 
 ## Technologies and Libraries
 
 CuisineShare is full stack application developed using the MERN stack (MongoDB, Express.js, ReactJS, Node.js) and includes JWT for authentication. The core technologies, frameworks, and libraries for this project include:
 
-- Frontend: ReactJS, React-Bootstrap for UI, Vite
+- Frontend: ReactJS, React-Bootstrap for UI, Vite, JWT-decrypt
 - Backend: Express, Node.js, CORS, MongoDB, Mongoose
 - Auth: JWT (JSON Web Token), bcrypt
 - Tooling: dotenv and GitHub
-
 
 # API Endpoints
 
