@@ -73,7 +73,7 @@ function RecipeCard ({recipe, onFavoriteSuccess, onFavoriteError}) {
                     Uploaded by: {recipe.author || 'Unknown'}
                 </Card.Subtitle>
                 <Card.Text>
-                    Est. Time: {recipe.time || 'N/A'} <br />
+                    Est. Time: {recipe.time || 'N/A'} min.<br />
                 </Card.Text>
                 {token && currentPath === '/BrowseRecipes' &&
                     <Button variant="danger" size="sm" onClick={(e) => onFavorite(e,recipe._id)}>

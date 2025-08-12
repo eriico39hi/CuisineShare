@@ -110,11 +110,10 @@ function Register() {
                       className='border border-dark border-1'
                       type="password" 
                       value={password}
-                      minLength={6}
                       onChange={(e)=>setPassword(e.target.value)}
-                      placeholder="Minimum length of 6" />
+                      placeholder="Create Your Password" />
                     <Form.Control.Feedback type="invalid">
-                      Must be at least six characters
+                      Please enter a valid password.
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Col>
